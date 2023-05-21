@@ -1,39 +1,35 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/MDIApplication.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.centroeducativo2.controladorDao.entidades.formularios;
 
 import com.mycompany.centroeducativo2.controladorDao.CursoAcademicoDaoImp;
 import com.mycompany.centroeducativo2.controladorDao.entidades.CursoAcademico;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.List;
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 
 /**
  *
- * @author sergio
+ * @author sum27
  */
-public class frmMain extends javax.swing.JFrame {
-
+public class Main extends javax.swing.JFrame {
     public int idCursoAcademico=0; 
     private JLabel statusLabel;
     /**
-     * Creates new form frmMain
+     * Creates new form Main
      */
-    public frmMain() {
+    public Main() {
         initComponents();
+        // Maximo de pantalla
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
         
         JPanel status = new JPanel();
         statusLabel = new JLabel("");
@@ -42,24 +38,10 @@ public class frmMain extends javax.swing.JFrame {
         
         generaMenuCursosAcademicos();
         //System.out.println("Generado menu");
+        
     }
     
-    private void generaMenuCursosAcademicos(){
-        
-        /*JRadioButtonMenuItem jrb23=new JRadioButtonMenuItem("2022-2023", true);
-        JRadioButtonMenuItem jrb22=new JRadioButtonMenuItem("2021-2022", false);
-        JRadioButtonMenuItem jrb21=new JRadioButtonMenuItem("2020-2021", false);
-        
-        ButtonGroup bgrCursosAcademicos=new ButtonGroup();
-        
-        jmnCursoAcademico.add(jrb23);
-        bgrCursosAcademicos.add(jrb23);
-        jmnCursoAcademico.add(jrb22);
-        bgrCursosAcademicos.add(jrb22);
-        jmnCursoAcademico.add(jrb21);
-        bgrCursosAcademicos.add(jrb21);
-        */
-                
+    private int generaMenuCursosAcademicos(){
         ButtonGroup bgrCursosAcademicos=new ButtonGroup();
         JRadioButtonMenuItem jrbCursoAcademico;
         
@@ -79,55 +61,24 @@ public class frmMain extends javax.swing.JFrame {
                     jmnCursoAcademico.add(jrbCursoAcademico); 
                     
                     jrbCursoAcademico.addItemListener(new ItemListener(){
-                        
+                        /**
+                         * Obtiene el curso seleccionado
+                         */
                         public void itemStateChanged(ItemEvent e){
-                            
                             JRadioButtonMenuItem jrbSelected=(JRadioButtonMenuItem)e.getItem();
                             idCursoAcademico=Integer.parseInt(jrbSelected.getName());
                             System.out.println(""+idCursoAcademico);
                             statusLabel.setText(jrbSelected.getText());
                             
                         }
-                        
                     });
-                    
-                    
                 }
+                return idCursoAcademico;
         }catch(Exception e){
             System.out.println("Error..."+e.getMessage());
         }
-    
+        return 0;
     }
-
-    private boolean existeFormulario(Object object){
-    
-        JInternalFrame[] frmcargados=pnldEscritorio.getAllFrames();
-        
-        for(int i=0;i<frmcargados.length;i++){ 
-            System.out.println(""+frmcargados[i].getClass());
-            if (frmcargados[i].getClass()==object.getClass()){
-                return true;
-            }
-            
-        }
-        return false;
-    }
-    
-    
-    private boolean existeFormularioV2(String nombreclase){
-    
-        JInternalFrame[] frmcargados=pnldEscritorio.getAllFrames();
-        
-        for(int i=0;i<frmcargados.length;i++){ 
-            
-            if (frmcargados[i].getClass().equals(nombreclase)){
-                return true;
-            }
-            
-        }
-        return false;
-    }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -137,7 +88,7 @@ public class frmMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnldEscritorio = new javax.swing.JDesktopPane();
+        content = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -146,28 +97,33 @@ public class frmMain extends javax.swing.JFrame {
         exitMenuItem = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         optmCursoAcademico = new javax.swing.JMenuItem();
-        copyMenuItem = new javax.swing.JMenuItem();
+        optmCurso = new javax.swing.JMenuItem();
         optmAlumno = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        optmUnidades = new javax.swing.JMenuItem();
         jmnCursoAcademico = new javax.swing.JMenu();
         helpMenu = new javax.swing.JMenu();
         contentMenuItem = new javax.swing.JMenuItem();
         optmAcerca = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setFocusCycleRoot(false);
 
-        javax.swing.GroupLayout pnldEscritorioLayout = new javax.swing.GroupLayout(pnldEscritorio);
-        pnldEscritorio.setLayout(pnldEscritorioLayout);
-        pnldEscritorioLayout.setHorizontalGroup(
-            pnldEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        content.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
+        content.setLayout(contentLayout);
+        contentLayout.setHorizontalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 638, Short.MAX_VALUE)
         );
-        pnldEscritorioLayout.setVerticalGroup(
-            pnldEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 342, Short.MAX_VALUE)
+        contentLayout.setVerticalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 352, Short.MAX_VALUE)
         );
 
-        getContentPane().add(pnldEscritorio, java.awt.BorderLayout.CENTER);
+        getContentPane().add(content, java.awt.BorderLayout.CENTER);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("Parametrización");
@@ -204,6 +160,7 @@ public class frmMain extends javax.swing.JFrame {
             }
         });
 
+        optmCursoAcademico.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         optmCursoAcademico.setMnemonic('t');
         optmCursoAcademico.setText("Curso Academico");
         optmCursoAcademico.addActionListener(new java.awt.event.ActionListener() {
@@ -213,9 +170,15 @@ public class frmMain extends javax.swing.JFrame {
         });
         editMenu.add(optmCursoAcademico);
 
-        copyMenuItem.setMnemonic('y');
-        copyMenuItem.setText("Curso");
-        editMenu.add(copyMenuItem);
+        optmCurso.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        optmCurso.setMnemonic('y');
+        optmCurso.setText("Curso");
+        optmCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optmCursooptmCursoActionPerformed(evt);
+            }
+        });
+        editMenu.add(optmCurso);
 
         optmAlumno.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         optmAlumno.setMnemonic('p');
@@ -227,13 +190,13 @@ public class frmMain extends javax.swing.JFrame {
         });
         editMenu.add(optmAlumno);
 
-        jMenuItem1.setText("Unidades");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        optmUnidades.setText("Unidades");
+        optmUnidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                optmUnidadesActionPerformed(evt);
             }
         });
-        editMenu.add(jMenuItem1);
+        editMenu.add(optmUnidades);
 
         menuBar.add(editMenu);
 
@@ -268,47 +231,69 @@ public class frmMain extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
-    private void optmAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmAcercaActionPerformed
-        // TODO add your handling code here:
-      frmAcercaDeDialogo frmacerca=new frmAcercaDeDialogo(this, rootPaneCheckingEnabled);
-      frmacerca.setVisible(true);
-        
-    }//GEN-LAST:event_optmAcercaActionPerformed
-
     private void optmCursoAcademicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmCursoAcademicoActionPerformed
         // TODO add your handling code here:
         frmCursoAcademico frmcursoaca=new frmCursoAcademico();
         frmcursoaca.setVisible(true);
     }//GEN-LAST:event_optmCursoAcademicoActionPerformed
 
+    private void CrearCurso(){
+        /**
+         * Mostrar el panel de manera interna
+         */
+        curso pnlcurso = new curso(idCursoAcademico);
+        pnlcurso.setSize(this.getSize());
+        pnlcurso.setLocation(0, 0);
+        
+        content.removeAll();
+        content.add(pnlcurso,BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+    }
+    
+    private void optmCursooptmCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmCursooptmCursoActionPerformed
+        CrearCurso();
+    }//GEN-LAST:event_optmCursooptmCursoActionPerformed
+
     private void optmAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmAlumnoActionPerformed
+        /**
+         * Mostrar el panel de manera interna
+         */
+        frmInternoAlumnos alumnos = new frmInternoAlumnos();
+        alumnos.setSize(638,375);
+        alumnos.setLocation(0, 0);
         
-        // TODO add your handling code here:
-        
-       frmInternoAlumnos frmalum=null;
-       
-       if (!existeFormulario(frmalum)){
-            frmalum=new frmInternoAlumnos();
-            pnldEscritorio.add(frmalum);
-            frmalum.show();
-                 
-       }
-       
-              
+        content.removeAll();
+        content.add(alumnos,BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
     }//GEN-LAST:event_optmAlumnoActionPerformed
+
+    private void optmUnidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmUnidadesActionPerformed
+        frmUnidades2 unidades2=new frmUnidades2();
+        /**
+         * Mostrar el panel de manera interna
+         */
+        unidades2.setSize(638,375);
+        unidades2.setLocation(0, 0);
+        
+        content.removeAll();
+        content.add(unidades2,BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+    }//GEN-LAST:event_optmUnidadesActionPerformed
 
     private void editMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMenuMouseClicked
         // TODO add your handling code here:
-     
+
     }//GEN-LAST:event_editMenuMouseClicked
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void optmAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmAcercaActionPerformed
         // TODO add your handling code here:
-        frmUnidades2 frm=new frmUnidades2();
-         
-         pnldEscritorio.add(frm);
-         frm.show();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        frmAcercaDeDialogo frmacerca=new frmAcercaDeDialogo(this, rootPaneCheckingEnabled);
+        frmacerca.setVisible(true);
+
+    }//GEN-LAST:event_optmAcercaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -327,42 +312,40 @@ public class frmMain extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmMain().setVisible(true);
+                new Main().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel content;
     private javax.swing.JMenuItem contentMenuItem;
-    private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu jmnCursoAcademico;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem optmAcerca;
     private javax.swing.JMenuItem optmAlumno;
+    private javax.swing.JMenuItem optmCurso;
     private javax.swing.JMenuItem optmCursoAcademico;
-    private javax.swing.JDesktopPane pnldEscritorio;
+    private javax.swing.JMenuItem optmUnidades;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables
-
 }

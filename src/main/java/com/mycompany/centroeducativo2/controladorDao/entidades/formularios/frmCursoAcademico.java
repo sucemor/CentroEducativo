@@ -29,7 +29,7 @@ public class frmCursoAcademico extends javax.swing.JFrame {
      */
     public frmCursoAcademico() {
         initComponents();
-        
+
         txtId.setVisible(false);
         //Establecer diseño de la tabla
         configTabla();
@@ -37,13 +37,13 @@ public class frmCursoAcademico extends javax.swing.JFrame {
         setCampos();
     }
 
-    private void configTabla(){
-        String col[]={"ID","INICIO","FIN","DESCRIPCION"};
-        
-        DefaultTableModel modelo=new DefaultTableModel(col,0);
+    private void configTabla() {
+        String col[] = {"ID", "INICIO", "FIN", "DESCRIPCION"};
+
+        DefaultTableModel modelo = new DefaultTableModel(col, 0);
         jtCursos.setModel(modelo);
         jtCursos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-                
+
         //configuro evento valor cambiado...
 /*        jtCursos.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
         public void valueChanged(ListSelectionEvent event) {
@@ -51,36 +51,34 @@ public class frmCursoAcademico extends javax.swing.JFrame {
             setCampos();
         }
     });
-  */              
+         */
     }
-    
-    private void cargaTabla(){
-        DefaultTableModel modelo=(DefaultTableModel)jtCursos.getModel();
-        
-        CursoAcademicoDaoImp cursoaca=CursoAcademicoDaoImp.getInstance();
-        String[] fila=new String[4];
-        
+
+    private void cargaTabla() {
+        DefaultTableModel modelo = (DefaultTableModel) jtCursos.getModel();
+
+        CursoAcademicoDaoImp cursoaca = CursoAcademicoDaoImp.getInstance();
+        String[] fila = new String[4];
+
         modelo.setNumRows(0);
-        try{
-            List<CursoAcademico> lst=cursoaca.getAll();
-            
-            for( CursoAcademico curso :lst){
-                fila[0]=""+curso.getId();
-                fila[1]=""+curso.getYearinicio();
-                fila[2]=""+curso.getYearfin();
-                fila[3]=""+curso.getDescripcion();
+        try {
+            List<CursoAcademico> lst = cursoaca.getAll();
+
+            for (CursoAcademico curso : lst) {
+                fila[0] = "" + curso.getId();
+                fila[1] = "" + curso.getYearinicio();
+                fila[2] = "" + curso.getYearfin();
+                fila[3] = "" + curso.getDescripcion();
                 modelo.addRow(fila);
             }
             //selecciono la primera fila
-           jtCursos.setRowSelectionInterval(0,0); 
-           
-        }catch(Exception e){
-            System.out.println("Error:"+e.getMessage());
+            jtCursos.setRowSelectionInterval(0, 0);
+
+        } catch (Exception e) {
+            System.out.println("Error:" + e.getMessage());
         }
     }
-    
-       
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -275,17 +273,17 @@ public class frmCursoAcademico extends javax.swing.JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
         //agregar un cursoacademico nuevo
-        CursoAcademicoDaoImp cursoaca=CursoAcademicoDaoImp.getInstance();
-        
-        try{
+        CursoAcademicoDaoImp cursoaca = CursoAcademicoDaoImp.getInstance();
+
+        try {
             cursoaca.add(getCampos());
             JOptionPane.showMessageDialog(this, "Curso agregado correctamente");
             cargaTabla();
-            
-        }catch(Exception e){
-            System.out.println("Error:"+e.getMessage());
-         }
-        
+
+        } catch (Exception e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void jtCursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtCursosMouseClicked
@@ -295,17 +293,17 @@ public class frmCursoAcademico extends javax.swing.JFrame {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
-        CursoAcademicoDaoImp cursoaca=CursoAcademicoDaoImp.getInstance();
-        
-        try{
+        CursoAcademicoDaoImp cursoaca = CursoAcademicoDaoImp.getInstance();
+
+        try {
             cursoaca.update(getCampos());
             JOptionPane.showMessageDialog(this, "Curso actualizado correctamente");
-            int fila=jtCursos.getSelectedRow();
+            int fila = jtCursos.getSelectedRow();
             cargaTabla();
-            jtCursos.setRowSelectionInterval(fila,fila); 
-        }catch(Exception e){
-            System.out.println("Error:"+e.getMessage());
-         }
+            jtCursos.setRowSelectionInterval(fila, fila);
+        } catch (Exception e) {
+            System.out.println("Error:" + e.getMessage());
+        }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
@@ -314,48 +312,46 @@ public class frmCursoAcademico extends javax.swing.JFrame {
 
     private void txtBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyPressed
         // TODO add your handling code here:
-        
-       if (evt.getKeyCode()==KeyEvent.VK_ENTER){
-            DefaultTableModel modelo=(DefaultTableModel) jtCursos.getModel();
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            DefaultTableModel modelo = (DefaultTableModel) jtCursos.getModel();
             TableRowSorter<TableModel> trSorter = new TableRowSorter<TableModel>(modelo);
 
             jtCursos.setRowSorter(trSorter);
 
-            if (txtBuscar.getText().length()==0) {
+            if (txtBuscar.getText().length() == 0) {
                 trSorter.setRowFilter(null);
-            }else{
+            } else {
 
                 trSorter.setRowFilter(RowFilter.regexFilter(txtBuscar.getText().trim()));
             }
 
-       }
-        
+        }
+
     }//GEN-LAST:event_txtBuscarKeyPressed
 
-    private CursoAcademico getCampos(){
-        CursoAcademico c=new CursoAcademico();
+    private CursoAcademico getCampos() {
+        CursoAcademico c = new CursoAcademico();
         c.setYearinicio(Integer.parseInt(txtInicio.getText()));
         c.setYearfin(Integer.parseInt(txtFin.getText()));
         c.setDescripcion(txtDescripcion.getText());
         c.setId(Integer.parseInt(txtId.getText()));
-        return c;        
+        return c;
     }
-    
+
     /**
-     * Establece los valores de los txt con los 
-     * valores de la fisa actual
+     * Establece los valores de los txt con los valores de la fisa actual
      */
-    private void setCampos(){
-    
-          //jtCursos.getValueAt(jtCursos.getSelectedRow(), 0)
-          txtInicio.setText(jtCursos.getValueAt(jtCursos.getSelectedRow(), 1).toString());
-          txtFin.setText(jtCursos.getValueAt(jtCursos.getSelectedRow(), 2).toString());
-          txtDescripcion.setText(jtCursos.getValueAt(jtCursos.getSelectedRow(), 3).toString());
-          txtId.setText(jtCursos.getValueAt(jtCursos.getSelectedRow(), 0).toString());
-          
+    private void setCampos() {
+
+        //jtCursos.getValueAt(jtCursos.getSelectedRow(), 0)
+        txtInicio.setText(jtCursos.getValueAt(jtCursos.getSelectedRow(), 1).toString());
+        txtFin.setText(jtCursos.getValueAt(jtCursos.getSelectedRow(), 2).toString());
+        txtDescripcion.setText(jtCursos.getValueAt(jtCursos.getSelectedRow(), 3).toString());
+        txtId.setText(jtCursos.getValueAt(jtCursos.getSelectedRow(), 0).toString());
+
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */

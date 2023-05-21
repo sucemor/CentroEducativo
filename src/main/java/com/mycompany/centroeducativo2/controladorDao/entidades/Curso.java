@@ -17,6 +17,7 @@ public class Curso{
     private String Observaciones;
     
     private int idcursoacademico;
+    private String descripCursoAcademico;
 
     public Curso(){
     
@@ -43,6 +44,14 @@ public class Curso{
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+
+    public String getDescripCursoAcademico() {
+        return descripCursoAcademico;
+    }
+
+    public void setDescripCursoAcademico(String descripCursoAcademico) {
+        this.descripCursoAcademico = descripCursoAcademico;
     }
 
     public String getNombre() {

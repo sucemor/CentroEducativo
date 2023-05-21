@@ -35,27 +35,28 @@ public class CursoDaoImp implements CursoDao {
 
     @Override
     public int add(Curso cu) throws SQLException {
-        String sql = """
-                  insert into curso(codigo,nombres,Observaciones,idcursosacademico)
-                  values (?,?,?)
-                  """;
+        String sql = "insert into curso(codigo,nombre,Observaciones,idcursoacademico)"
+                + " values (?,?,?,?)";
+
         int devolver = 0;
-        try (Connection cn = MyDataSource.getConnection(); PreparedStatement pstm = cn.prepareStatement(sql);) {
-            pstm.setString(1, cu.getNombre());
+        try (Connection cn = MyDataSource.getConnection();) {
+            PreparedStatement pstm = cn.prepareStatement(sql);
+            pstm.setString(1, cu.getCodigo());
             pstm.setString(2, cu.getNombre());
             pstm.setString(3, cu.getObservaciones());
+            pstm.setInt(4, cu.getIdcursoacademico());
 
             devolver = pstm.executeUpdate();
         }
 
-        return devolver; 
+        return devolver;
     }
 
     @Override
     public int update(Curso c) throws SQLException {
         String sql = """
-                  update curso
-                  set codigo=?, nombre=?, Observaciones=?
+                   update curso
+                   set codigo=?, nombre=?, Observaciones=?
                    where id=?
                    """;
         int result = 0;
@@ -71,20 +72,16 @@ public class CursoDaoImp implements CursoDao {
 
         }
 
-        return result;    
+        return result;
     }
 
     @Override
     public CursoAcademico getCursoAcademico(Curso cu) throws SQLException {
-        String sql = """
-                    select *
-                    from cursoacademico
-                    where id = ?
-                    """;
-        
+        String sql = "select * from cursoacademico where id = ?";
+
         CursoAcademico cursoaca = null;
-        
-        try (Connection cn = MyDataSource.getConnection(); PreparedStatement pstm = cn.prepareStatement(sql);) {            
+
+        try (Connection cn = MyDataSource.getConnection(); PreparedStatement pstm = cn.prepareStatement(sql);) {
             pstm.setInt(1, cu.getIdcursoacademico());
 
             ResultSet rs = pstm.executeQuery();
@@ -129,19 +126,18 @@ public class CursoDaoImp implements CursoDao {
 
     @Override
     public List<Curso> getAll() throws SQLException {
-        Curso cur=null;
-        String sql="select * from curso";
-        
-        List<Curso> result=new ArrayList();
+        Curso cur = null;
+        String sql = "select * from curso";
 
-        try(Connection cn=MyDataSource.getConnection();
-            PreparedStatement pstm=cn.prepareStatement(sql);){
-         
-            ResultSet rs=pstm.executeQuery();
-            
-            while (rs.next()){
-                cur=new Curso();
-                
+        List<Curso> result = new ArrayList();
+        
+        try (Connection cn = MyDataSource.getConnection(); PreparedStatement pstm = cn.prepareStatement(sql);) {
+
+            ResultSet rs = pstm.executeQuery();
+
+            while (rs.next()) {
+                cur = new Curso();
+
                 cur.setId(rs.getInt("id"));
                 cur.setCodigo(rs.getString("codigo"));
                 cur.setNombre(rs.getString("nombre"));
@@ -149,26 +145,25 @@ public class CursoDaoImp implements CursoDao {
                 cur.setIdcursoacademico(rs.getInt("idcursoacademico"));
                 result.add(cur);
             }
-            
+
         }
-        return result;    
+        return result;
     }
 
     @Override
     public List<Curso> getAllByCursoAcademico(int idcursoacademico) throws SQLException {
         Curso cur = null;
         String sql = "select * from curso where idcursoacademico = ?";
-        
+
         List<Curso> result = new ArrayList();
 
-        try(Connection cn=MyDataSource.getConnection();
-            PreparedStatement pstm=cn.prepareStatement(sql);){
+        try (Connection cn = MyDataSource.getConnection(); PreparedStatement pstm = cn.prepareStatement(sql);) {
             pstm.setInt(1, idcursoacademico);
-            ResultSet rs=pstm.executeQuery();
-            
-            while (rs.next()){
-                cur=new Curso();
-                
+            ResultSet rs = pstm.executeQuery();
+
+            while (rs.next()) {
+                cur = new Curso();
+
                 cur.setId(rs.getInt("id"));
                 cur.setCodigo(rs.getString("codigo"));
                 cur.setNombre(rs.getString("nombre"));
@@ -176,14 +171,14 @@ public class CursoDaoImp implements CursoDao {
                 cur.setIdcursoacademico(rs.getInt("idcursoacademico"));
                 result.add(cur);
             }
-            
+
         }
         return result;
     }
 
     @Override
     public void delete(int id) throws SQLException {
-    String sql = """
+        String sql = """
                    delete from centroeducativo.curso where id=?;
                    """;
         try (Connection cn = MyDataSource.getConnection();) {
@@ -194,6 +189,6 @@ public class CursoDaoImp implements CursoDao {
             pstm.executeUpdate();
         } catch (Exception e) {
             System.out.println("ERROR: " + e.getMessage());
-        }    
+        }
     }
 }

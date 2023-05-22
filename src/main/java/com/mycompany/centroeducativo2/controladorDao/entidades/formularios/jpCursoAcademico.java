@@ -5,8 +5,6 @@
 package com.mycompany.centroeducativo2.controladorDao.entidades.formularios;
 
 import com.mycompany.centroeducativo2.controladorDao.CursoAcademicoDaoImp;
-import com.mycompany.centroeducativo2.controladorDao.CursoDaoImp;
-import com.mycompany.centroeducativo2.controladorDao.entidades.Curso;
 import com.mycompany.centroeducativo2.controladorDao.entidades.CursoAcademico;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -21,26 +19,24 @@ import javax.swing.table.TableRowSorter;
  *
  * @author sum27
  */
-public class curso extends javax.swing.JPanel {
+public class jpCursoAcademico extends javax.swing.JPanel {
 
-    public int idCA;
-    public int id[];
     public int idCurso[];
 
     /**
      * Creates new form curso
      */
-    public curso(int idCursoAcademico) {
+    public jpCursoAcademico() {
         initComponents();
         configTabla();
-
-        boolean check;
-        check = cargaTabla(idCursoAcademico);
+        
+        // Si la tabla esta vacia que pueda cargar
+        boolean check = cargaTabla();
         if (check == true) {
             setCampos();
         }
+
         Ocultar();
-        idCA = idCursoAcademico;
         CargarCursor();
     }
 
@@ -48,10 +44,7 @@ public class curso extends javax.swing.JPanel {
         CursoAcademicoDaoImp CA = CursoAcademicoDaoImp.getInstance();
         try {
             List<CursoAcademico> ListaCA = CA.getAll();
-            id = new int[ListaCA.size()];
             for (int i = 0; i < ListaCA.size(); i++) {
-                CBCurso.addItem(ListaCA.get(i).getDescripcion());
-                id[i] = ListaCA.get(i).getId();
             }
         } catch (Exception e) {
             System.out.println("Error..." + e.getMessage());
@@ -72,8 +65,6 @@ public class curso extends javax.swing.JPanel {
         btnCancelar.setVisible(false);
         btnBorrar.setVisible(false);
         CBOpciones.setVisible(false);
-        CBCurso.setVisible(false);
-        LCurso.setVisible(false);
     }
 
     public void Mostrar() {
@@ -102,8 +93,8 @@ public class curso extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         pnlDetalle = new javax.swing.JPanel();
-        jlCodigo = new javax.swing.JLabel();
-        jlNombre = new javax.swing.JLabel();
+        jlInicio = new javax.swing.JLabel();
+        jlFIn = new javax.swing.JLabel();
         txtNombre = new javax.swing.JLabel();
         txtObservaciones = new javax.swing.JLabel();
         txtLabelCodigo = new javax.swing.JLabel();
@@ -112,9 +103,7 @@ public class curso extends javax.swing.JPanel {
         txtFCodigo = new javax.swing.JTextField();
         btnActualizar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        jLObservaciones1 = new javax.swing.JLabel();
-        LCurso = new javax.swing.JLabel();
-        CBCurso = new javax.swing.JComboBox<>();
+        jLDescripcion = new javax.swing.JLabel();
         btnBorrar = new javax.swing.JButton();
         btnAnadir = new javax.swing.JButton();
         CBOpciones = new javax.swing.JComboBox<>();
@@ -199,27 +188,26 @@ public class curso extends javax.swing.JPanel {
 
         pnlDetalle.setBackground(new java.awt.Color(255, 255, 255));
 
-        jlCodigo.setFont(new java.awt.Font("Yu Gothic", 1, 15)); // NOI18N
-        jlCodigo.setText("Codigo");
+        jlInicio.setFont(new java.awt.Font("Yu Gothic", 1, 15)); // NOI18N
+        jlInicio.setText("Fecha de inicio");
 
-        jlNombre.setBackground(new java.awt.Color(153, 255, 153));
-        jlNombre.setFont(new java.awt.Font("Yu Gothic", 1, 15)); // NOI18N
-        jlNombre.setText("Nombre");
+        jlFIn.setBackground(new java.awt.Color(153, 255, 153));
+        jlFIn.setFont(new java.awt.Font("Yu Gothic", 1, 15)); // NOI18N
+        jlFIn.setText("Fecha de fin");
 
         txtNombre.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(153, 153, 153));
-        txtNombre.setText("Nombre del curso");
+        txtNombre.setText("Fecha de fin");
 
         txtObservaciones.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         txtObservaciones.setForeground(new java.awt.Color(153, 153, 153));
-        txtObservaciones.setText("Descripcion del curso");
+        txtObservaciones.setText("Descripcion");
 
         txtLabelCodigo.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         txtLabelCodigo.setForeground(new java.awt.Color(153, 153, 153));
-        txtLabelCodigo.setText("Codigo del curso");
+        txtLabelCodigo.setText("Fecha de inicio");
 
         txtFDescripcion.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
-        txtFDescripcion.setText("Introduzca las observaciones");
         txtFDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFDescripcionActionPerformed(evt);
@@ -227,7 +215,6 @@ public class curso extends javax.swing.JPanel {
         });
 
         txtFNombre.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
-        txtFNombre.setText("Introduzca el nombre");
         txtFNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFNombreActionPerformed(evt);
@@ -235,7 +222,6 @@ public class curso extends javax.swing.JPanel {
         });
 
         txtFCodigo.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
-        txtFCodigo.setText("Introduzca el codigo");
         txtFCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFCodigoActionPerformed(evt);
@@ -258,19 +244,9 @@ public class curso extends javax.swing.JPanel {
             }
         });
 
-        jLObservaciones1.setBackground(new java.awt.Color(153, 255, 153));
-        jLObservaciones1.setFont(new java.awt.Font("Yu Gothic", 1, 15)); // NOI18N
-        jLObservaciones1.setText("Observaciones");
-
-        LCurso.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
-        LCurso.setText("Seleccione el curso:");
-
-        CBCurso.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
-        CBCurso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CBCursoActionPerformed(evt);
-            }
-        });
+        jLDescripcion.setBackground(new java.awt.Color(153, 255, 153));
+        jLDescripcion.setFont(new java.awt.Font("Yu Gothic", 1, 15)); // NOI18N
+        jLDescripcion.setText("Descripcion");
 
         btnBorrar.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
         btnBorrar.setText("Borrar");
@@ -313,14 +289,9 @@ public class curso extends javax.swing.JPanel {
                 .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlDetalleLayout.createSequentialGroup()
                         .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlDetalleLayout.createSequentialGroup()
-                                .addComponent(txtLabelCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtLabelCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDetalleLayout.createSequentialGroup()
                                 .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(pnlDetalleLayout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(txtFDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlDetalleLayout.createSequentialGroup()
                                         .addGap(6, 6, 6)
                                         .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,49 +307,45 @@ public class curso extends javax.swing.JPanel {
                                                 .addComponent(btnBorrar)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlDetalleLayout.createSequentialGroup()
-                                        .addComponent(jlNombre)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(pnlDetalleLayout.createSequentialGroup()
+                                        .addComponent(jlInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtFCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(pnlDetalleLayout.createSequentialGroup()
+                                        .addComponent(jlFIn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(txtFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(pnlDetalleLayout.createSequentialGroup()
-                                        .addComponent(jlCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtFCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(txtFDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(83, 83, 83)))
-                        .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(LCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CBCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(79, 79, 79))
+                        .addGap(229, 229, 229))
                     .addGroup(pnlDetalleLayout.createSequentialGroup()
                         .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLObservaciones1))
+                            .addComponent(jLDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         pnlDetalleLayout.setVerticalGroup(
             pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDetalleLayout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LCurso)
-                    .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jlCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtFCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19)
-                .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtLabelCodigo)
-                    .addComponent(CBCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addComponent(txtLabelCodigo)
                 .addGap(18, 18, 18)
                 .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlNombre)
+                    .addComponent(jlFIn)
                     .addComponent(txtFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9)
                 .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLObservaciones1)
+                    .addComponent(jLDescripcion)
                     .addComponent(txtFDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(txtObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -395,24 +362,26 @@ public class curso extends javax.swing.JPanel {
                 .addContainerGap(85, Short.MAX_VALUE))
         );
 
-        add(pnlDetalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 670, 480));
+        add(pnlDetalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 550, 480));
     }// </editor-fold>//GEN-END:initComponents
-public boolean cargaTabla(int idCursoAcademico) {
+public boolean cargaTabla() {
         DefaultTableModel modelo = (DefaultTableModel) jtCursoss.getModel();
 
-        CursoDaoImp cursoControler = CursoDaoImp.getInstance();
+        CursoAcademicoDaoImp cursoAcaControler = CursoAcademicoDaoImp.getInstance();
         String[] fila = new String[3];
 
         modelo.setNumRows(0);
         try {
-            List<Curso> lst = cursoControler.getAllByCursoAcademico(idCursoAcademico);
+            List<CursoAcademico> lst = cursoAcaControler.getAll();
+            
+            if (lst.size() > 0) {
             // Para borrar necesito el id
             idCurso = new int[lst.size()];
 
             for (int i = 0; i < lst.size(); i++) {
-                fila[0] = "" + lst.get(i).getCodigo();
-                fila[1] = "" + lst.get(i).getNombre();
-                fila[2] = "" + lst.get(i).getObservaciones();
+                fila[0] = "" + lst.get(i).getYearinicio();
+                fila[1] = "" + lst.get(i).getYearfin();
+                fila[2] = "" + lst.get(i).getDescripcion();
 
                 modelo.addRow(fila);
 
@@ -422,26 +391,24 @@ public boolean cargaTabla(int idCursoAcademico) {
             //selecciono la primera fila
             jtCursoss.setRowSelectionInterval(0, 0);
             return true;
+            }
         } catch (Exception e) {
             System.out.println("Error:" + e.getMessage());
         }
         return false;
     }
 
-    private Curso getCampos() {
-        Curso c = new Curso();
-        c.setCodigo(txtFCodigo.getText());
-        c.setNombre(txtFNombre.getText());
-        c.setObservaciones(txtFDescripcion.getText());
-        c.setIdcursoacademico(idCA);
+    private CursoAcademico getCampos() {
+        CursoAcademico c = new CursoAcademico();
+        c.setYearinicio(Integer.parseInt(txtFCodigo.getText()));
+        c.setYearfin(Integer.parseInt(txtFNombre.getText()));
+        c.setDescripcion(txtFDescripcion.getText());
         return c;
     }
 
-    private Curso AyudaActualizar() {
-        Curso cr = getCampos();
+    private CursoAcademico AyudaActualizar() {
+        CursoAcademico cr = getCampos();
         cr.setId(idCurso[Integer.parseInt(jtCursoss.getSelectedRow() + "")]);
-        cr.setIdcursoacademico(id[CBCurso.getSelectedIndex()]);
-        System.out.println(CBCurso.getSelectedIndex() + " como resultado: " + id[CBCurso.getSelectedIndex()]);
 
         return cr;
     }
@@ -453,8 +420,7 @@ public boolean cargaTabla(int idCursoAcademico) {
     }
 
     public void configTabla() {
-
-        String col[] = {"CODIGO", "NOMBRE", "OBSERVACIONES"};
+        String col[] = {"INICIO", "FIN", "DESCRIPCION"};
 
         DefaultTableModel modelo = new DefaultTableModel(col, 0) {
 
@@ -512,12 +478,12 @@ public boolean cargaTabla(int idCursoAcademico) {
 
     private void btnAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirActionPerformed
         // Boton de añadir
-        CursoDaoImp c = CursoDaoImp.getInstance();
+        CursoAcademicoDaoImp c = CursoAcademicoDaoImp.getInstance();
 
         try {
             c.add(getCampos());
             JOptionPane.showMessageDialog(this, "Curso agregado correctamente");
-            cargaTabla(idCA);
+            cargaTabla();
 
         } catch (Exception e) {
             System.out.println("Error:" + e.getMessage());
@@ -526,11 +492,11 @@ public boolean cargaTabla(int idCursoAcademico) {
     }//GEN-LAST:event_btnAnadirActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        CursoDaoImp c = CursoDaoImp.getInstance();
+        CursoAcademicoDaoImp c = CursoAcademicoDaoImp.getInstance();
         try {
             c.update(AyudaActualizar());
             JOptionPane.showMessageDialog(this, "Curso actualizado");
-            cargaTabla(idCA);
+            cargaTabla();
 
         } catch (Exception e) {
             System.out.println("Error:" + e.getMessage());
@@ -539,11 +505,11 @@ public boolean cargaTabla(int idCursoAcademico) {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        CursoDaoImp c = CursoDaoImp.getInstance();
+        CursoAcademicoDaoImp c = CursoAcademicoDaoImp.getInstance();
         try {
             c.delete(idCurso[Integer.parseInt((jtCursoss.getSelectedRow() + ""))]);
             JOptionPane.showMessageDialog(this, "Curso borrado...");
-            cargaTabla(idCA);
+            cargaTabla();
 
         } catch (Exception e) {
             System.out.println("Error:" + e.getMessage());
@@ -566,8 +532,6 @@ public boolean cargaTabla(int idCursoAcademico) {
             case 1 -> {
                 btnActualizar.setVisible(true);
                 btnCancelar.setVisible(true);
-                LCurso.setVisible(true);
-                CBCurso.setVisible(true);
 
                 txtFCodigo.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 0).toString());
                 txtFNombre.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 1).toString());
@@ -590,29 +554,23 @@ public boolean cargaTabla(int idCursoAcademico) {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFNombreActionPerformed
 
-    private void CBCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBCursoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CBCursoActionPerformed
-
     private void txtFCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFCodigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFCodigoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> CBCurso;
     private javax.swing.JComboBox<String> CBOpciones;
-    private javax.swing.JLabel LCurso;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAnadir;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditar;
-    private javax.swing.JLabel jLObservaciones1;
+    private javax.swing.JLabel jLDescripcion;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JLabel jlCodigo;
-    private javax.swing.JLabel jlNombre;
+    private javax.swing.JLabel jlFIn;
+    private javax.swing.JLabel jlInicio;
     private javax.swing.JTable jtCursoss;
     private javax.swing.JPanel pnlDetalle;
     private javax.swing.JPanel pnlTabla2;

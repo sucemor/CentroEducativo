@@ -39,6 +39,7 @@ public class frmCursoAcademico extends javax.swing.JFrame {
 
     private void configTabla() {
         String col[] = {"ID", "INICIO", "FIN", "DESCRIPCION"};
+        
 
         DefaultTableModel modelo = new DefaultTableModel(col, 0);
         jtCursos.setModel(modelo);

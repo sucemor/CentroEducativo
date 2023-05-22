@@ -99,6 +99,8 @@ public class Main extends javax.swing.JFrame {
         optmCursoAcademico = new javax.swing.JMenuItem();
         optmCurso = new javax.swing.JMenuItem();
         optmAlumno = new javax.swing.JMenuItem();
+        optmAula = new javax.swing.JMenuItem();
+        optmAutorizado = new javax.swing.JMenuItem();
         optmUnidades = new javax.swing.JMenuItem();
         jmnCursoAcademico = new javax.swing.JMenu();
         helpMenu = new javax.swing.JMenu();
@@ -160,7 +162,6 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        optmCursoAcademico.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         optmCursoAcademico.setMnemonic('t');
         optmCursoAcademico.setText("Curso Academico");
         optmCursoAcademico.addActionListener(new java.awt.event.ActionListener() {
@@ -170,7 +171,6 @@ public class Main extends javax.swing.JFrame {
         });
         editMenu.add(optmCursoAcademico);
 
-        optmCurso.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         optmCurso.setMnemonic('y');
         optmCurso.setText("Curso");
         optmCurso.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +180,6 @@ public class Main extends javax.swing.JFrame {
         });
         editMenu.add(optmCurso);
 
-        optmAlumno.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         optmAlumno.setMnemonic('p');
         optmAlumno.setText("Alumno");
         optmAlumno.addActionListener(new java.awt.event.ActionListener() {
@@ -189,6 +188,22 @@ public class Main extends javax.swing.JFrame {
             }
         });
         editMenu.add(optmAlumno);
+
+        optmAula.setText("Aula");
+        optmAula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optmAulaActionPerformed(evt);
+            }
+        });
+        editMenu.add(optmAula);
+
+        optmAutorizado.setText("Autorizado");
+        optmAutorizado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optmAutorizadoActionPerformed(evt);
+            }
+        });
+        editMenu.add(optmAutorizado);
 
         optmUnidades.setText("Unidades");
         optmUnidades.addActionListener(new java.awt.event.ActionListener() {
@@ -232,15 +247,18 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void optmCursoAcademicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmCursoAcademicoActionPerformed
-        // TODO add your handling code here:
-        frmCursoAcademico frmcursoaca=new frmCursoAcademico();
-        frmcursoaca.setVisible(true);
+        jpCursoAcademico pnlcursoAca = new jpCursoAcademico();
+        pnlcursoAca.setSize(this.getSize());
+        pnlcursoAca.setLocation(0, 0);
+        
+        content.removeAll();
+        content.add(pnlcursoAca,BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
     }//GEN-LAST:event_optmCursoAcademicoActionPerformed
 
-    private void CrearCurso(){
-        /**
-         * Mostrar el panel de manera interna
-         */
+    
+    private void optmCursooptmCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmCursooptmCursoActionPerformed
         curso pnlcurso = new curso(idCursoAcademico);
         pnlcurso.setSize(this.getSize());
         pnlcurso.setLocation(0, 0);
@@ -249,22 +267,18 @@ public class Main extends javax.swing.JFrame {
         content.add(pnlcurso,BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
-    }
-    
-    private void optmCursooptmCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmCursooptmCursoActionPerformed
-        CrearCurso();
     }//GEN-LAST:event_optmCursooptmCursoActionPerformed
 
     private void optmAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmAlumnoActionPerformed
         /**
          * Mostrar el panel de manera interna
          */
-        frmInternoAlumnos alumnos = new frmInternoAlumnos();
-        alumnos.setSize(638,375);
-        alumnos.setLocation(0, 0);
+        jpAlumnos pnlAlumno = new jpAlumnos();
+        pnlAlumno.setSize(this.getSize());
+        pnlAlumno.setLocation(0, 0);
         
         content.removeAll();
-        content.add(alumnos,BorderLayout.CENTER);
+        content.add(pnlAlumno,BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_optmAlumnoActionPerformed
@@ -294,6 +308,31 @@ public class Main extends javax.swing.JFrame {
         frmacerca.setVisible(true);
 
     }//GEN-LAST:event_optmAcercaActionPerformed
+
+    private void optmAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmAulaActionPerformed
+        /**
+         * Mostrar el panel de manera interna
+         */
+        jpAula pnlAula = new jpAula();
+        pnlAula.setSize(this.getSize());
+        pnlAula.setLocation(0, 0);
+        
+        content.removeAll();
+        content.add(pnlAula,BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+    }//GEN-LAST:event_optmAulaActionPerformed
+
+    private void optmAutorizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmAutorizadoActionPerformed
+        jpAutorizado pnlAutorizado = new jpAutorizado();
+        pnlAutorizado.setSize(this.getSize());
+        pnlAutorizado.setLocation(0, 0);
+        
+        content.removeAll();
+        content.add(pnlAutorizado,BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+    }//GEN-LAST:event_optmAutorizadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -342,6 +381,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem optmAcerca;
     private javax.swing.JMenuItem optmAlumno;
+    private javax.swing.JMenuItem optmAula;
+    private javax.swing.JMenuItem optmAutorizado;
     private javax.swing.JMenuItem optmCurso;
     private javax.swing.JMenuItem optmCursoAcademico;
     private javax.swing.JMenuItem optmUnidades;

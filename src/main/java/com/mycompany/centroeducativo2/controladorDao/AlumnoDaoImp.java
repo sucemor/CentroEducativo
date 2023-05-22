@@ -40,7 +40,7 @@ public class AlumnoDaoImp implements AlumnoDao {
         
         String sql = "insert into alumno (dni, nombre, apellido1, apellido2,"
                 + " fNacimiento, telefono, email, direccion, cp, poblacion,"
-                + " provincia) values (?,?,?,?,?,?,?,?,?,?,?);";
+                + " provincia) values (?,?,?,?,?,?,?,?,?,?,?)";
         int result = 0;
 
         try (Connection cn = MyDataSource.getConnection(); PreparedStatement pstm = cn.prepareStatement(sql);) {
@@ -79,7 +79,7 @@ public class AlumnoDaoImp implements AlumnoDao {
                 alum.setNombre(rs.getString("nombre"));
                 alum.setApellido1(rs.getString("apellido1"));
                 alum.setApellido2(rs.getString("apellido2"));
-                alum.setFnacimiento(rs.getString("fNacimiento"));
+                alum.setFnacimiento(rs.getDate("fNacimiento").toString());
                 alum.setTelefono(rs.getString("telefono"));
                 alum.setEmail(rs.getString("email"));
                 alum.setDireccion(rs.getString("direccion"));
@@ -115,9 +115,13 @@ public class AlumnoDaoImp implements AlumnoDao {
                 alum.setNombre(rs.getString("nombre"));
                 alum.setApellido1(rs.getString("apellido1"));
                 alum.setApellido2(rs.getString("apellido2"));
-                
                 alum.setFnacimiento(rs.getDate("fNacimiento").toString());
-                
+                alum.setTelefono(rs.getString("telefono"));
+                alum.setEmail(rs.getString("email"));
+                alum.setDireccion(rs.getString("direccion"));
+                alum.setCp(rs.getString("cp"));
+                alum.setPoblacion(rs.getString("poblacion"));
+                alum.setProvincia(rs.getString("provincia"));
                 
                 result.add(alum);
             }
@@ -131,9 +135,9 @@ public class AlumnoDaoImp implements AlumnoDao {
     public int update(Alumno a) throws SQLException {
         String sql = """
                    update centroeducativo.alumno
-                   set dni, nombre, apellido1, apellido2,
-                   fNacimiento, telefono, email, direccion, cp, poblacion,
-                   provincia
+                   set dni=?, nombre=?, apellido1=?, apellido2=?,
+                   fNacimiento=?, telefono=?, email=?, direccion=?, cp=?, poblacion=?,
+                   provincia=?
                    where id = ?;
                    """;
 
@@ -151,6 +155,7 @@ public class AlumnoDaoImp implements AlumnoDao {
             pstm.setString(9, a.getCp());
             pstm.setString(10, a.getPoblacion());
             pstm.setString(11, a.getProvincia());
+            pstm.setInt(12, a.getId());
 
             return pstm.executeUpdate();
 

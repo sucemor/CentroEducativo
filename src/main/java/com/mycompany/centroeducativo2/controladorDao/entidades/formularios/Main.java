@@ -101,7 +101,9 @@ public class Main extends javax.swing.JFrame {
         optmAlumno = new javax.swing.JMenuItem();
         optmAula = new javax.swing.JMenuItem();
         optmAutorizado = new javax.swing.JMenuItem();
+        optmAutorizaciones = new javax.swing.JMenuItem();
         optmUnidades = new javax.swing.JMenuItem();
+        optmPersonal = new javax.swing.JMenuItem();
         jmnCursoAcademico = new javax.swing.JMenu();
         helpMenu = new javax.swing.JMenu();
         contentMenuItem = new javax.swing.JMenuItem();
@@ -118,17 +120,18 @@ public class Main extends javax.swing.JFrame {
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 638, Short.MAX_VALUE)
+            .addGap(0, 559, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 352, Short.MAX_VALUE)
+            .addGap(0, 269, Short.MAX_VALUE)
         );
 
         getContentPane().add(content, java.awt.BorderLayout.CENTER);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("Parametrización");
+        fileMenu.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
 
         openMenuItem.setMnemonic('o');
         openMenuItem.setText("Open");
@@ -156,12 +159,14 @@ public class Main extends javax.swing.JFrame {
 
         editMenu.setMnemonic('e');
         editMenu.setText("Mantenimimientos");
+        editMenu.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         editMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 editMenuMouseClicked(evt);
             }
         });
 
+        optmCursoAcademico.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         optmCursoAcademico.setMnemonic('t');
         optmCursoAcademico.setText("Curso Academico");
         optmCursoAcademico.addActionListener(new java.awt.event.ActionListener() {
@@ -171,6 +176,7 @@ public class Main extends javax.swing.JFrame {
         });
         editMenu.add(optmCursoAcademico);
 
+        optmCurso.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         optmCurso.setMnemonic('y');
         optmCurso.setText("Curso");
         optmCurso.addActionListener(new java.awt.event.ActionListener() {
@@ -180,6 +186,7 @@ public class Main extends javax.swing.JFrame {
         });
         editMenu.add(optmCurso);
 
+        optmAlumno.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         optmAlumno.setMnemonic('p');
         optmAlumno.setText("Alumno");
         optmAlumno.addActionListener(new java.awt.event.ActionListener() {
@@ -189,6 +196,7 @@ public class Main extends javax.swing.JFrame {
         });
         editMenu.add(optmAlumno);
 
+        optmAula.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         optmAula.setText("Aula");
         optmAula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,6 +205,7 @@ public class Main extends javax.swing.JFrame {
         });
         editMenu.add(optmAula);
 
+        optmAutorizado.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         optmAutorizado.setText("Autorizado");
         optmAutorizado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,6 +214,16 @@ public class Main extends javax.swing.JFrame {
         });
         editMenu.add(optmAutorizado);
 
+        optmAutorizaciones.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        optmAutorizaciones.setText("Autorizados");
+        optmAutorizaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optmAutorizacionesActionPerformed(evt);
+            }
+        });
+        editMenu.add(optmAutorizaciones);
+
+        optmUnidades.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         optmUnidades.setText("Unidades");
         optmUnidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -213,19 +232,31 @@ public class Main extends javax.swing.JFrame {
         });
         editMenu.add(optmUnidades);
 
+        optmPersonal.setText("Personal");
+        optmPersonal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optmPersonalActionPerformed(evt);
+            }
+        });
+        editMenu.add(optmPersonal);
+
         menuBar.add(editMenu);
 
         jmnCursoAcademico.setText("Año Academico");
+        jmnCursoAcademico.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         menuBar.add(jmnCursoAcademico);
 
         helpMenu.setMnemonic('h');
         helpMenu.setText("Ayuda");
+        helpMenu.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
 
+        contentMenuItem.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         contentMenuItem.setMnemonic('c');
         contentMenuItem.setText("Contents");
         helpMenu.add(contentMenuItem);
 
         optmAcerca.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        optmAcerca.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         optmAcerca.setMnemonic('a');
         optmAcerca.setText("Acerca de");
         optmAcerca.addActionListener(new java.awt.event.ActionListener() {
@@ -246,13 +277,14 @@ public class Main extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
+    
     private void optmCursoAcademicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmCursoAcademicoActionPerformed
-        jpCursoAcademico pnlcursoAca = new jpCursoAcademico();
-        pnlcursoAca.setSize(this.getSize());
-        pnlcursoAca.setLocation(0, 0);
+        jpCursoAcademico pnlcursoAcademico = new jpCursoAcademico();
+        pnlcursoAcademico.setSize(this.getSize());
+        pnlcursoAcademico.setLocation(0, 0);
         
         content.removeAll();
-        content.add(pnlcursoAca,BorderLayout.CENTER);
+        content.add(pnlcursoAcademico,BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_optmCursoAcademicoActionPerformed
@@ -284,15 +316,12 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_optmAlumnoActionPerformed
 
     private void optmUnidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmUnidadesActionPerformed
-        frmUnidades2 unidades2=new frmUnidades2();
-        /**
-         * Mostrar el panel de manera interna
-         */
-        unidades2.setSize(638,375);
-        unidades2.setLocation(0, 0);
+        jpUnidad pnlUnidad = new jpUnidad();
+        pnlUnidad.setSize(this.getSize());
+        pnlUnidad.setLocation(0, 0);
         
         content.removeAll();
-        content.add(unidades2,BorderLayout.CENTER);
+        content.add(pnlUnidad,BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_optmUnidadesActionPerformed
@@ -333,6 +362,28 @@ public class Main extends javax.swing.JFrame {
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_optmAutorizadoActionPerformed
+
+    private void optmAutorizacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmAutorizacionesActionPerformed
+        jpAutorizaciones pnlAutorizaciones = new jpAutorizaciones();
+        pnlAutorizaciones.setSize(this.getSize());
+        pnlAutorizaciones.setLocation(0, 0);
+        
+        content.removeAll();
+        content.add(pnlAutorizaciones,BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+    }//GEN-LAST:event_optmAutorizacionesActionPerformed
+
+    private void optmPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmPersonalActionPerformed
+        jpPersonal pnlPersonal = new jpPersonal();
+        pnlPersonal.setSize(this.getSize());
+        pnlPersonal.setLocation(0, 0);
+        
+        content.removeAll();
+        content.add(pnlPersonal,BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+    }//GEN-LAST:event_optmPersonalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -382,9 +433,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem optmAcerca;
     private javax.swing.JMenuItem optmAlumno;
     private javax.swing.JMenuItem optmAula;
+    private javax.swing.JMenuItem optmAutorizaciones;
     private javax.swing.JMenuItem optmAutorizado;
     private javax.swing.JMenuItem optmCurso;
     private javax.swing.JMenuItem optmCursoAcademico;
+    private javax.swing.JMenuItem optmPersonal;
     private javax.swing.JMenuItem optmUnidades;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;

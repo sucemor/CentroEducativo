@@ -4,8 +4,8 @@
  */
 package com.mycompany.centroeducativo2.controladorDao.entidades.formularios;
 
-import com.mycompany.centroeducativo2.controladorDao.AlumnoDaoImp;
-import com.mycompany.centroeducativo2.controladorDao.entidades.Alumno;
+import com.mycompany.centroeducativo2.controladorDao.PersonalDaoImp;
+import com.mycompany.centroeducativo2.controladorDao.entidades.Personal;
 import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -19,14 +19,14 @@ import javax.swing.table.TableRowSorter;
  *
  * @author sum27
  */
-public class jpAlumnos extends javax.swing.JPanel {
+public class jpPersonal extends javax.swing.JPanel {
 
-    public int idAlumno[];
+    public int idPersonal[];
 
     /**
      * Creates new form curso
      */
-    public jpAlumnos() {
+    public jpPersonal() {
         initComponents();
         configTabla();
         
@@ -92,7 +92,7 @@ public class jpAlumnos extends javax.swing.JPanel {
         txtApellido2 = new javax.swing.JTextField();
         txtPoblacion = new javax.swing.JTextField();
         txtProvinicia = new javax.swing.JTextField();
-        txtFechaNacimiento = new javax.swing.JTextField();
+        txtTipo = new javax.swing.JTextField();
         txtDNI = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
         txtCP = new javax.swing.JTextField();
@@ -176,12 +176,10 @@ public class jpAlumnos extends javax.swing.JPanel {
         add(pnlTabla2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, -1));
 
         pnlDetalle.setBackground(new java.awt.Color(255, 255, 255));
-        pnlDetalle.setToolTipText("");
 
         btnActualizar.setBackground(new java.awt.Color(51, 255, 51));
         btnActualizar.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
         btnActualizar.setText("Actualizar");
-        btnActualizar.setToolTipText("");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
@@ -191,7 +189,6 @@ public class jpAlumnos extends javax.swing.JPanel {
         btnCancelar.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(255, 51, 51));
         btnCancelar.setText("Cancelar");
-        btnCancelar.setToolTipText("");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -201,7 +198,6 @@ public class jpAlumnos extends javax.swing.JPanel {
         btnBorrar.setBackground(new java.awt.Color(51, 255, 51));
         btnBorrar.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
         btnBorrar.setText("Borrar");
-        btnBorrar.setToolTipText("");
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBorrarActionPerformed(evt);
@@ -225,7 +221,7 @@ public class jpAlumnos extends javax.swing.JPanel {
         jLCP.setToolTipText("");
 
         jLFNacimiento1.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
-        jLFNacimiento1.setText("Fecha de nacimiento");
+        jLFNacimiento1.setText("Tipo");
 
         jLEmail.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
         jLEmail.setText("Email");
@@ -247,7 +243,6 @@ public class jpAlumnos extends javax.swing.JPanel {
         btnAnadir.setBackground(new java.awt.Color(51, 255, 51));
         btnAnadir.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
         btnAnadir.setText("Añadir");
-        btnAnadir.setToolTipText("");
         btnAnadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnadirActionPerformed(evt);
@@ -265,7 +260,6 @@ public class jpAlumnos extends javax.swing.JPanel {
 
         btnEditar.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
         btnEditar.setText("Realizar modificaciones");
-        btnEditar.setToolTipText("");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
@@ -311,7 +305,7 @@ public class jpAlumnos extends javax.swing.JPanel {
                                     .addComponent(btnActualizar, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLDNI1)
-                                        .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLFNacimiento1)
                                         .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -325,9 +319,9 @@ public class jpAlumnos extends javax.swing.JPanel {
                             .addGroup(pnlDetalleLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(CBOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(32, 32, 32)
                                 .addComponent(btnEditar)
-                                .addGap(63, 63, 63)
+                                .addGap(36, 36, 36)
                                 .addComponent(btnBorrar)))
                         .addGap(63, 63, 63))))
         );
@@ -368,7 +362,7 @@ public class jpAlumnos extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(33, 33, 33)
                 .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLPoblacion)
@@ -404,14 +398,14 @@ public class jpAlumnos extends javax.swing.JPanel {
 public boolean cargaTabla() {
         DefaultTableModel modelo = (DefaultTableModel) jtCursoss.getModel();
 
-        AlumnoDaoImp cursoAcaControler = AlumnoDaoImp.getInstance();
+        PersonalDaoImp cursoAcaControler = PersonalDaoImp.getInstance();
         String[] fila = new String[11];
 
         modelo.setNumRows(0);
         try {
-            List<Alumno> lst = cursoAcaControler.getAll();
+            List<Personal> lst = cursoAcaControler.getAll();
             // Para borrar necesito el id
-            idAlumno = new int[lst.size()];
+            idPersonal = new int[lst.size()];
 
             if (lst.size() > 0) {
                 for (int i = 0; i < lst.size(); i++) {
@@ -419,7 +413,7 @@ public boolean cargaTabla() {
                     fila[1] = "" + lst.get(i).getNombre();
                     fila[2] = "" + lst.get(i).getApellido1();
                     fila[3] = "" + lst.get(i).getApellido2();
-                    fila[4] = "" + lst.get(i).getFnacimiento();
+                    fila[4] = "" + lst.get(i).getTipo();
                     fila[5] = "" + lst.get(i).getTelefono();
                     fila[6] = "" + lst.get(i).getEmail();
                     fila[7] = "" + lst.get(i).getDireccion();
@@ -430,7 +424,7 @@ public boolean cargaTabla() {
                     modelo.addRow(fila);
 
                     // Le metemos el id
-                    idAlumno[i] = lst.get(i).getId();
+                    idPersonal[i] = lst.get(i).getId();
                 }
                 //selecciono la primera fila
                 jtCursoss.setRowSelectionInterval(0, 0);
@@ -442,13 +436,13 @@ public boolean cargaTabla() {
         return false;
     }
 
-    private Alumno getCampos() {
-        Alumno c = new Alumno();
+    private Personal getCampos() {
+        Personal c = new Personal();
         c.setDni(txtDNI.getText());
         c.setNombre(txtNombre.getText());
         c.setApellido1(txtApellido1.getText());
         c.setApellido2(txtApellido2.getText());
-        c.setFnacimiento(txtFechaNacimiento.getText());
+        c.setTipo(Integer.parseInt(txtTipo.getText()));
         c.setTelefono(txtTelefono.getText());
         c.setEmail(txtEmail.getText());
         c.setDireccion(txtDireccion.getText());
@@ -459,9 +453,9 @@ public boolean cargaTabla() {
         return c;
     }
 
-    private Alumno AyudaActualizar() {
-        Alumno cr = getCampos();
-        cr.setId(idAlumno[Integer.parseInt(jtCursoss.getSelectedRow() + "")]);
+    private Personal AyudaActualizar() {
+        Personal cr = getCampos();
+        cr.setId(idPersonal[Integer.parseInt(jtCursoss.getSelectedRow() + "")]);
         System.out.println(cr);
         return cr;
     }
@@ -471,7 +465,7 @@ public boolean cargaTabla() {
         txtNombre.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 1).toString());
         txtApellido1.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 2).toString());
         txtApellido2.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 3).toString());
-        txtFechaNacimiento.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 4).toString());
+        txtTipo.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 4).toString());
         txtTelefono.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 5).toString());
         txtEmail.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 6).toString());
         txtDireccion.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 7).toString());
@@ -481,7 +475,7 @@ public boolean cargaTabla() {
     }
 
     public void configTabla() {
-        String col[] = {"DNI", "NOMBRE", "APELLIDO1", "APELLIDO2", "FECHA NACIMIENTO",
+        String col[] = {"DNI", "NOMBRE", "APELLIDO1", "APELLIDO2", "TIPO",
             "TELEFONO", "EMAIL", "DIRECCION", "CP", "POBLACION", "PROVINCIA"};
 
         DefaultTableModel modelo = new DefaultTableModel(col, 0) {
@@ -540,14 +534,15 @@ public boolean cargaTabla() {
 
     private void btnAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirActionPerformed
         // Boton de añadir
-        AlumnoDaoImp c = AlumnoDaoImp.getInstance();
+        PersonalDaoImp c = PersonalDaoImp.getInstance();
 
         try {
             c.add(getCampos());
-            JOptionPane.showMessageDialog(this, "Alumno agregado correctamente");
+            JOptionPane.showMessageDialog(this, "Personal agregado correctamente");
             cargaTabla();
 
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error");
             System.out.println("Error:" + e.getMessage());
         }
         Ocultar();
@@ -555,13 +550,14 @@ public boolean cargaTabla() {
     }//GEN-LAST:event_btnAnadirActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        AlumnoDaoImp c = AlumnoDaoImp.getInstance();
+        PersonalDaoImp c = PersonalDaoImp.getInstance();
         try {
             c.update(AyudaActualizar());
-            JOptionPane.showMessageDialog(this, "Alumno actualizado");
+            JOptionPane.showMessageDialog(this, "Personal actualizado");
             cargaTabla();
 
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error");
             System.out.println("Error:" + e.getMessage());
         }
         Ocultar();
@@ -569,13 +565,14 @@ public boolean cargaTabla() {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        AlumnoDaoImp c = AlumnoDaoImp.getInstance();
+        PersonalDaoImp c = PersonalDaoImp.getInstance();
         try {
-            c.delete(idAlumno[Integer.parseInt((jtCursoss.getSelectedRow() + ""))]);
-            JOptionPane.showMessageDialog(this, "Alumno borrado...");
+            c.delete(idPersonal[Integer.parseInt((jtCursoss.getSelectedRow() + ""))]);
+            JOptionPane.showMessageDialog(this, "Personal borrado...");
             cargaTabla();
 
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error");
             System.out.println("Error:" + e.getMessage());
         }
         Ocultar();
@@ -639,10 +636,10 @@ public boolean cargaTabla() {
     private javax.swing.JTextField txtDNI;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtFechaNacimiento;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPoblacion;
     private javax.swing.JTextField txtProvinicia;
     private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,14 @@
  */
 package com.mycompany.centroeducativo2.controladorDao.entidades.formularios;
 
+import com.mycompany.centroeducativo2.controladorDao.AlumnoDaoImp;
+import com.mycompany.centroeducativo2.controladorDao.AutorizadoDaoImp;
+import com.mycompany.centroeducativo2.controladorDao.entidades.Alumno;
+import com.mycompany.centroeducativo2.controladorDao.entidades.Autorizado;
+import java.util.List;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author sum27
@@ -15,6 +23,119 @@ public class jpAutorizaciones extends javax.swing.JPanel {
      */
     public jpAutorizaciones() {
         initComponents();
+        configTabla();
+        cargaTablaAutorizado();
+        cargaTablaAlumno();
+    }
+
+    private void cargaTablaAutorizado() {
+        DefaultTableModel modelo1 = (DefaultTableModel) TablaAutorizado.getModel();
+
+        AutorizadoDaoImp AutorizadoControler = AutorizadoDaoImp.getInstance();
+        String[] fila1 = new String[5];
+
+        modelo1.setNumRows(0);
+        try {
+            List<Autorizado> lst1 = AutorizadoControler.getAll();
+            if (lst1.size() > 0) {
+
+                for (int i = 0; i < lst1.size(); i++) {
+                    fila1[0] = "" + lst1.get(i).getDni();
+                    fila1[1] = "" + lst1.get(i).getNombre();
+                    fila1[2] = "" + lst1.get(i).getApellido1();
+                    fila1[3] = "" + lst1.get(i).getApellido2();
+                    fila1[4] = "" + lst1.get(i).getParen();
+
+                    modelo1.addRow(fila1);
+                }
+                //selecciono la primera fila
+                TablaAutorizado.setRowSelectionInterval(0, 0);
+            }
+        } catch (Exception e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+
+    }
+
+    private void cargaTablaAlumno() {
+        DefaultTableModel modelo = (DefaultTableModel) TableAlumnos.getModel();
+
+        AlumnoDaoImp cursoAcaControler = AlumnoDaoImp.getInstance();
+        String[] fila = new String[11];
+
+        modelo.setNumRows(0);
+        try {
+            List<Alumno> lst = cursoAcaControler.getAll();
+
+            if (lst.size() > 0) {
+                for (int i = 0; i < lst.size(); i++) {
+                    fila[0] = "" + lst.get(i).getDni();
+                    fila[1] = "" + lst.get(i).getNombre();
+                    fila[2] = "" + lst.get(i).getApellido1();
+                    fila[3] = "" + lst.get(i).getApellido2();
+                    fila[4] = "" + lst.get(i).getFnacimiento();
+                    fila[5] = "" + lst.get(i).getTelefono();
+                    fila[6] = "" + lst.get(i).getEmail();
+                    fila[7] = "" + lst.get(i).getDireccion();
+                    fila[8] = "" + lst.get(i).getCp();
+                    fila[9] = "" + lst.get(i).getPoblacion();
+                    fila[10] = "" + lst.get(i).getProvincia();
+
+                    modelo.addRow(fila);
+                }
+                //selecciono la primera fila
+                TableAlumnos.setRowSelectionInterval(0, 0);
+            }
+        } catch (Exception e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+    }
+
+    public void configTabla() {
+        // Autorizaciones
+        String col1[] = {"IDALUMNO", "IDAUTORIZACION"};
+
+        DefaultTableModel modelo1 = new DefaultTableModel(col1, 0) {
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+        };
+
+        TablaAutorizados.setModel(modelo1);
+        TablaAutorizados.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        //AUTORIZADOS
+        String col2[] = {"DNI", "NOMBRE", "APELLIDO1", "APELLIDO2", "PARENTESCO"};
+
+        DefaultTableModel modelo2 = new DefaultTableModel(col2, 0) {
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+        };
+
+        TablaAutorizado.setModel(modelo2);
+        TablaAutorizado.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        //ALUMNOS
+        String col3[] = {"DNI", "NOMBRE", "APELLIDO1", "APELLIDO2", "FECHA NACIMIENTO",
+            "TELEFONO", "EMAIL", "DIRECCION", "CP", "POBLACION", "PROVINCIA"};
+
+        DefaultTableModel modelo3 = new DefaultTableModel(col3, 0) {
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+        };
+
+        TableAlumnos.setModel(modelo3);
+        TableAlumnos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
     /**
@@ -26,21 +147,90 @@ public class jpAutorizaciones extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TableAlumnos = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TablaAutorizados = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        TablaAutorizado = new javax.swing.JTable();
+
         setBackground(new java.awt.Color(255, 255, 255));
+
+        TableAlumnos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(TableAlumnos);
+
+        TablaAutorizados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(TablaAutorizados);
+
+        TablaAutorizado.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(TablaAutorizado);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 920, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 529, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(210, 210, 210)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TablaAutorizado;
+    private javax.swing.JTable TablaAutorizados;
+    private javax.swing.JTable TableAlumnos;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }

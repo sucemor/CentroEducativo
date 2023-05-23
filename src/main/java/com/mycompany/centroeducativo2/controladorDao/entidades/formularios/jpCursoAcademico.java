@@ -110,6 +110,7 @@ public class jpCursoAcademico extends javax.swing.JPanel {
         btnEditar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setForeground(new java.awt.Color(255, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlTabla2.setBackground(new java.awt.Color(255, 255, 255));
@@ -228,7 +229,8 @@ public class jpCursoAcademico extends javax.swing.JPanel {
             }
         });
 
-        btnActualizar.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        btnActualizar.setBackground(new java.awt.Color(51, 255, 51));
+        btnActualizar.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -236,7 +238,8 @@ public class jpCursoAcademico extends javax.swing.JPanel {
             }
         });
 
-        btnCancelar.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        btnCancelar.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 51, 51));
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -248,7 +251,8 @@ public class jpCursoAcademico extends javax.swing.JPanel {
         jLDescripcion.setFont(new java.awt.Font("Yu Gothic", 1, 15)); // NOI18N
         jLDescripcion.setText("Descripcion");
 
-        btnBorrar.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        btnBorrar.setBackground(new java.awt.Color(51, 255, 51));
+        btnBorrar.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
         btnBorrar.setText("Borrar");
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -256,7 +260,8 @@ public class jpCursoAcademico extends javax.swing.JPanel {
             }
         });
 
-        btnAnadir.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        btnAnadir.setBackground(new java.awt.Color(51, 255, 51));
+        btnAnadir.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
         btnAnadir.setText("Añadir");
         btnAnadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -264,7 +269,8 @@ public class jpCursoAcademico extends javax.swing.JPanel {
             }
         });
 
-        CBOpciones.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        CBOpciones.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
+        CBOpciones.setForeground(new java.awt.Color(255, 0, 0));
         CBOpciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Añadir", "Actualizar", "Borrar" }));
         CBOpciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -272,7 +278,7 @@ public class jpCursoAcademico extends javax.swing.JPanel {
             }
         });
 
-        btnEditar.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        btnEditar.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
         btnEditar.setText("Realizar modificaciones");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -482,7 +488,7 @@ public boolean cargaTabla() {
 
         try {
             c.add(getCampos());
-            JOptionPane.showMessageDialog(this, "Curso agregado correctamente");
+            JOptionPane.showMessageDialog(this, "Curso academico agregado correctamente");
             cargaTabla();
 
         } catch (Exception e) {
@@ -495,7 +501,7 @@ public boolean cargaTabla() {
         CursoAcademicoDaoImp c = CursoAcademicoDaoImp.getInstance();
         try {
             c.update(AyudaActualizar());
-            JOptionPane.showMessageDialog(this, "Curso actualizado");
+            JOptionPane.showMessageDialog(this, "Curso academico actualizado");
             cargaTabla();
 
         } catch (Exception e) {
@@ -508,7 +514,7 @@ public boolean cargaTabla() {
         CursoAcademicoDaoImp c = CursoAcademicoDaoImp.getInstance();
         try {
             c.delete(idCurso[Integer.parseInt((jtCursoss.getSelectedRow() + ""))]);
-            JOptionPane.showMessageDialog(this, "Curso borrado...");
+            JOptionPane.showMessageDialog(this, "Curso academico borrado...");
             cargaTabla();
 
         } catch (Exception e) {

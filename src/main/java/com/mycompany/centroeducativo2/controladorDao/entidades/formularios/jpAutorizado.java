@@ -31,23 +31,11 @@ public class jpAutorizado extends javax.swing.JPanel {
         configTabla();
         
         // Si la tabla esta vacia que pueda cargar
-        boolean check = cargaTabla();
-        if(check == true)
+        
+        if(cargaTabla() == true)
             setCampos();
 
         Ocultar();
-        CargarCursor();
-    }
-
-    private void CargarCursor() {
-        AutorizadoDaoImp CA = AutorizadoDaoImp.getInstance();
-        try {
-            List<Autorizado> ListaCA = CA.getAll();
-            for (int i = 0; i < ListaCA.size(); i++) {
-            }
-        } catch (Exception e) {
-            System.out.println("Error..." + e.getMessage());
-        }
     }
 
     private void Ocultar() {
@@ -55,7 +43,7 @@ public class jpAutorizado extends javax.swing.JPanel {
         txtNombre.setVisible(true);
         txtApellido1.setVisible(true);
         txtApellido2.setVisible(true);
-        txtParentesco.setVisible(true);
+        LbTXTParentesco.setVisible(true);
         btnEditar.setVisible(true);
 
         btnAnadir.setVisible(false);
@@ -63,6 +51,7 @@ public class jpAutorizado extends javax.swing.JPanel {
         btnCancelar.setVisible(false);
         btnBorrar.setVisible(false);
         CBOpciones.setVisible(false);
+        CBParentesco.setVisible(false);
     }
 
     public void Mostrar() {
@@ -70,7 +59,7 @@ public class jpAutorizado extends javax.swing.JPanel {
         txtNombre.setVisible(false);
         txtApellido1.setVisible(false);
         txtApellido2.setVisible(false);
-        txtParentesco.setVisible(false);
+        LbTXTParentesco.setVisible(false);
         btnEditar.setVisible(false);
 
     }
@@ -101,11 +90,12 @@ public class jpAutorizado extends javax.swing.JPanel {
         jLApellido2 = new javax.swing.JLabel();
         jLParentesco = new javax.swing.JLabel();
         jLApellido1 = new javax.swing.JLabel();
-        txtParentesco = new javax.swing.JTextField();
         txtDNI = new javax.swing.JTextField();
         txtApellido1 = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtApellido2 = new javax.swing.JTextField();
+        CBParentesco = new javax.swing.JComboBox<>();
+        LbTXTParentesco = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -159,37 +149,33 @@ public class jpAutorizado extends javax.swing.JPanel {
         pnlTabla2Layout.setHorizontalGroup(
             pnlTabla2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTabla2Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addGap(65, 65, 65)
                 .addGroup(pnlTabla2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlTabla2Layout.createSequentialGroup()
-                        .addGroup(pnlTabla2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(pnlTabla2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(62, Short.MAX_VALUE))))
+                    .addComponent(jLabel4)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 87, Short.MAX_VALUE))
         );
         pnlTabla2Layout.setVerticalGroup(
             pnlTabla2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTabla2Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(pnlTabla2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, -1));
+        add(pnlTabla2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, -1));
 
         pnlDetalle.setBackground(new java.awt.Color(255, 255, 255));
 
         jlDni.setFont(new java.awt.Font("Yu Gothic", 1, 15)); // NOI18N
         jlDni.setText("DNI");
 
-        btnActualizar.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        btnActualizar.setBackground(new java.awt.Color(51, 255, 51));
+        btnActualizar.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,7 +183,8 @@ public class jpAutorizado extends javax.swing.JPanel {
             }
         });
 
-        btnCancelar.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        btnCancelar.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 51, 51));
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,7 +196,8 @@ public class jpAutorizado extends javax.swing.JPanel {
         jLNombre.setFont(new java.awt.Font("Yu Gothic", 1, 15)); // NOI18N
         jLNombre.setText("Nombre");
 
-        btnBorrar.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        btnBorrar.setBackground(new java.awt.Color(51, 255, 51));
+        btnBorrar.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
         btnBorrar.setText("Borrar");
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,7 +205,8 @@ public class jpAutorizado extends javax.swing.JPanel {
             }
         });
 
-        btnAnadir.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        btnAnadir.setBackground(new java.awt.Color(51, 255, 51));
+        btnAnadir.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
         btnAnadir.setText("Añadir");
         btnAnadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,7 +214,8 @@ public class jpAutorizado extends javax.swing.JPanel {
             }
         });
 
-        CBOpciones.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        CBOpciones.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
+        CBOpciones.setForeground(new java.awt.Color(255, 51, 51));
         CBOpciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Añadir", "Actualizar", "Borrar" }));
         CBOpciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -233,7 +223,7 @@ public class jpAutorizado extends javax.swing.JPanel {
             }
         });
 
-        btnEditar.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        btnEditar.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
         btnEditar.setText("Realizar modificaciones");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,15 +243,24 @@ public class jpAutorizado extends javax.swing.JPanel {
         jLApellido1.setFont(new java.awt.Font("Yu Gothic", 1, 15)); // NOI18N
         jLApellido1.setText("Apellido 1");
 
-        txtParentesco.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
-
         txtDNI.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        txtDNI.setForeground(new java.awt.Color(153, 153, 153));
 
         txtApellido1.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        txtApellido1.setForeground(new java.awt.Color(153, 153, 153));
 
         txtNombre.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(153, 153, 153));
 
         txtApellido2.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        txtApellido2.setForeground(new java.awt.Color(153, 153, 153));
+
+        CBParentesco.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        CBParentesco.setForeground(new java.awt.Color(153, 153, 153));
+
+        LbTXTParentesco.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        LbTXTParentesco.setForeground(new java.awt.Color(153, 153, 153));
+        LbTXTParentesco.setText("Parentesco");
 
         javax.swing.GroupLayout pnlDetalleLayout = new javax.swing.GroupLayout(pnlDetalle);
         pnlDetalle.setLayout(pnlDetalleLayout);
@@ -289,8 +288,9 @@ public class jpAutorizado extends javax.swing.JPanel {
                     .addComponent(jlDni, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLParentesco, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtParentesco, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(230, 230, 230)
+                    .addComponent(CBParentesco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LbTXTParentesco))
+                .addGap(167, 167, 167)
                 .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtApellido2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -298,7 +298,7 @@ public class jpAutorizado extends javax.swing.JPanel {
                     .addComponent(jLApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlDetalleLayout.setVerticalGroup(
             pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,8 +319,10 @@ public class jpAutorizado extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtParentesco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(31, 31, 31)
+                            .addComponent(LbTXTParentesco))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CBParentesco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
                 .addComponent(jLApellido2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtApellido2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -339,12 +341,16 @@ public class jpAutorizado extends javax.swing.JPanel {
                         .addComponent(btnAnadir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCancelar)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
-        add(pnlDetalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 550, 600));
+        add(pnlDetalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 0, 500, 600));
     }// </editor-fold>//GEN-END:initComponents
 public boolean cargaTabla() {
+        CBParentesco.addItem("TUTOR1");
+        CBParentesco.addItem("TUTOR2");
+        CBParentesco.addItem("OTROS");
+    
         DefaultTableModel modelo = (DefaultTableModel) jtCursoss.getModel();
 
         AutorizadoDaoImp AutorizadoControler = AutorizadoDaoImp.getInstance();
@@ -386,7 +392,7 @@ public boolean cargaTabla() {
         c.setApellido1(txtApellido1.getText());
         c.setApellido2(txtApellido2.getText());
         //Es un enumerado
-        String respuesta = txtParentesco.getText();
+        String respuesta = LbTXTParentesco.getText();
         c.setParen(c.getParen().valueOf(respuesta));
         return c;
     }
@@ -394,7 +400,9 @@ public boolean cargaTabla() {
     private Autorizado AyudaActualizar() {
         Autorizado cr = getCampos();
         cr.setId(idAutorizado[Integer.parseInt(jtCursoss.getSelectedRow() + "")]);
-
+        //Es un enumerado
+        String respuesta = CBParentesco.getSelectedItem().toString();
+        cr.setParen(cr.getParen().valueOf(respuesta));
         return cr;
     }
 
@@ -403,9 +411,9 @@ public boolean cargaTabla() {
         txtNombre.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 1).toString());
         txtApellido1.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 2).toString());
         txtApellido2.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 3).toString());
-        txtParentesco.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 4).toString());
+        LbTXTParentesco.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 4).toString());
     }
-
+    
     public void configTabla() {
         String col[] = {"DNI", "NOMBRE", "APELLIDO1", "APELLIDO2", "PARENTESCO"};
 
@@ -469,7 +477,7 @@ public boolean cargaTabla() {
 
         try {
             c.add(getCampos());
-            JOptionPane.showMessageDialog(this, "Curso agregado correctamente");
+            JOptionPane.showMessageDialog(this, "Autorizado agregado correctamente");
             cargaTabla();
 
         } catch (Exception e) {
@@ -480,11 +488,12 @@ public boolean cargaTabla() {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         AutorizadoDaoImp c = AutorizadoDaoImp.getInstance();
+        
         try {
             c.update(AyudaActualizar());
-            JOptionPane.showMessageDialog(this, "Curso actualizado");
+            JOptionPane.showMessageDialog(this, "Autorizado actualizado");
             cargaTabla();
-
+            
         } catch (Exception e) {
             System.out.println("Error:" + e.getMessage());
         }
@@ -495,7 +504,7 @@ public boolean cargaTabla() {
         AutorizadoDaoImp c = AutorizadoDaoImp.getInstance();
         try {
             c.delete(idAutorizado[Integer.parseInt((jtCursoss.getSelectedRow() + ""))]);
-            JOptionPane.showMessageDialog(this, "Curso borrado...");
+            JOptionPane.showMessageDialog(this, "Autorizado borrado...");
             cargaTabla();
 
         } catch (Exception e) {
@@ -513,10 +522,14 @@ public boolean cargaTabla() {
             case 0 -> {
                 btnAnadir.setVisible(true);
                 btnCancelar.setVisible(true);
+                LbTXTParentesco.setVisible(false);
+                CBParentesco.setVisible(true);
             }
             case 1 -> {
                 btnActualizar.setVisible(true);
                 btnCancelar.setVisible(true);
+                LbTXTParentesco.setVisible(false);
+                CBParentesco.setVisible(true);
             }
             case 2 -> {
                 btnEditar.setVisible(false);
@@ -530,6 +543,8 @@ public boolean cargaTabla() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CBOpciones;
+    private javax.swing.JComboBox<String> CBParentesco;
+    private javax.swing.JLabel LbTXTParentesco;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAnadir;
     private javax.swing.JButton btnBorrar;
@@ -550,6 +565,5 @@ public boolean cargaTabla() {
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtDNI;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtParentesco;
     // End of variables declaration//GEN-END:variables
 }

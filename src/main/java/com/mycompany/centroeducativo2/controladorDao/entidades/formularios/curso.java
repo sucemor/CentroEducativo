@@ -41,10 +41,13 @@ public class curso extends javax.swing.JPanel {
         }
         Ocultar();
         idCA = idCursoAcademico;
-        CargarCursor();
+        CargarCurso();
     }
 
-    private void CargarCursor() {
+    /**
+     * Para poder usar el combobox
+     */
+    private void CargarCurso() {
         CursoAcademicoDaoImp CA = CursoAcademicoDaoImp.getInstance();
         try {
             List<CursoAcademico> ListaCA = CA.getAll();
@@ -242,7 +245,8 @@ public class curso extends javax.swing.JPanel {
             }
         });
 
-        btnActualizar.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        btnActualizar.setBackground(new java.awt.Color(0, 255, 0));
+        btnActualizar.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -250,7 +254,8 @@ public class curso extends javax.swing.JPanel {
             }
         });
 
-        btnCancelar.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        btnCancelar.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 51, 51));
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -272,7 +277,8 @@ public class curso extends javax.swing.JPanel {
             }
         });
 
-        btnBorrar.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        btnBorrar.setBackground(new java.awt.Color(0, 255, 0));
+        btnBorrar.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
         btnBorrar.setText("Borrar");
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -280,7 +286,8 @@ public class curso extends javax.swing.JPanel {
             }
         });
 
-        btnAnadir.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        btnAnadir.setBackground(new java.awt.Color(0, 255, 0));
+        btnAnadir.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
         btnAnadir.setText("Añadir");
         btnAnadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -288,7 +295,8 @@ public class curso extends javax.swing.JPanel {
             }
         });
 
-        CBOpciones.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        CBOpciones.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
+        CBOpciones.setForeground(new java.awt.Color(255, 51, 51));
         CBOpciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Añadir", "Actualizar", "Borrar" }));
         CBOpciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -296,7 +304,7 @@ public class curso extends javax.swing.JPanel {
             }
         });
 
-        btnEditar.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        btnEditar.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
         btnEditar.setText("Realizar modificaciones");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -335,8 +343,7 @@ public class curso extends javax.swing.JPanel {
                                                 .addGap(18, 18, 18)
                                                 .addComponent(btnBorrar)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlDetalleLayout.createSequentialGroup()
                                         .addComponent(jlNombre)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

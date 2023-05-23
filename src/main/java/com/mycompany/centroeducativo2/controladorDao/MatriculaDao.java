@@ -6,6 +6,7 @@ package com.mycompany.centroeducativo2.controladorDao;
  */
 
 
+import com.mycompany.centroeducativo2.controladorDao.entidades.Matricula;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -14,13 +15,13 @@ import java.util.List;
  * @author sum27
  */
 public interface MatriculaDao {
-    int add(MatriculaDao m) throws SQLException;
+    int add(Matricula m) throws SQLException;
     
-    MatriculaDao getById(int id) throws SQLException;
+    Matricula getById(int id) throws SQLException;
         
-    List<MatriculaDao> getAll()  throws SQLException;
+    List<Matricula> getAll()  throws SQLException;
     
-    int update(MatriculaDao m)  throws SQLException;
+    int update(Matricula m)  throws SQLException;
     
     void delete(int id)  throws SQLException;
 }

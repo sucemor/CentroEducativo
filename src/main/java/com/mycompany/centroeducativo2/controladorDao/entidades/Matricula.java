@@ -45,16 +45,16 @@ public class Matricula {
         return idalumno;
     }
 
-    public void setIdalumno(int idalumno) {
-        this.idalumno = idalumno;
-    }
-
-    public int getIdunidas() {
+    public int getIdunidad() {
         return idunidad;
     }
 
-    public void setIdunidas(int idunidad) {
+    public void setIdunidad(int idunidad) {
         this.idunidad = idunidad;
+    }
+
+    public void setIdalumno(int idalumno) {
+        this.idalumno = idalumno;
     }
 
     public String getDescripcion() {

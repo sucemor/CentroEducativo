@@ -5,43 +5,41 @@
 package com.mycompany.centroeducativo2.controladorDao.entidades;
 
 import java.sql.Date;
-import java.util.Objects;
 
 /**
  *
- * @author sergio
+ * @author sum27
  */
-public class Alumno {
+public class Personal {
     private int id;
     private String dni;
     private String nombre;
     private String apellido1;
     private String apellido2;
-    private Date fnacimiento;
-    private String telefono;
-    private String email;
     private String direccion;
     private String cp;
     private String poblacion;
     private String provincia;
+    private String telefono;
+    private String email;
+    private int tipo;
 
-    public Alumno(){
-    
+    public Personal() {
     }
-    
-    public Alumno(int id, String dni, String nombre, String apellido1, String apellido2, String fnacimiento, String telefono, String email, String direccion, String cp, String poblacion, String provincia) {
+
+    public Personal(int id, String dni, String nombre, String apellido1, String apellido2, String direccion, String cp, String poblacion, String provincia, String telefono, String email, int tipo) {
         this.id = id;
         this.dni = dni;
         this.nombre = nombre;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
-        this.fnacimiento = Date.valueOf(fnacimiento);
-        this.telefono = telefono;
-        this.email = email;
         this.direccion = direccion;
         this.cp = cp;
         this.poblacion = poblacion;
         this.provincia = provincia;
+        this.telefono = telefono;
+        this.email = email;
+        this.tipo = tipo;
     }
 
     public int getId() {
@@ -84,30 +82,6 @@ public class Alumno {
         this.apellido2 = apellido2;
     }
 
-    public Date getFnacimiento() {
-        return fnacimiento;
-    }
-
-    public void setFnacimiento(String fnacimiento) {
-        this.fnacimiento = Date.valueOf(fnacimiento);
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getDireccion() {
         return direccion;
     }
@@ -140,11 +114,38 @@ public class Alumno {
         this.provincia = provincia;
     }
 
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
+    @Override
+    public String toString() {
+        return "Personal{" + "id=" + id + ", dni=" + dni + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2=" + apellido2 + ", direccion=" + direccion + ", cp=" + cp + ", poblacion=" + poblacion + ", provincia=" + provincia + ", telefono=" + telefono + ", email=" + email + ", tipo=" + tipo + '}';
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + this.id;
-        hash = 89 * hash + Objects.hashCode(this.dni);
+        int hash = 3;
         return hash;
     }
 
@@ -159,20 +160,9 @@ public class Alumno {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Alumno other = (Alumno) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        return Objects.equals(this.dni, other.dni);
+        final Personal other = (Personal) obj;
+        return this.id == other.id;
     }
-
-    @Override
-    public String toString() {
-        return "Alumno{" + "id=" + id + ", dni=" + dni + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2=" + apellido2 + ", fnacimiento=" + fnacimiento + ", telefono=" + telefono + ", email=" + email + ", direccion=" + direccion + ", cp=" + cp + ", poblacion=" + poblacion + ", provincia=" + provincia + '}';
-    }
-    
-    
-    
     
     
 }

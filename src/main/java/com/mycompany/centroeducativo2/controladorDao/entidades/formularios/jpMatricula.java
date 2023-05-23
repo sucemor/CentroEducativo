@@ -4,13 +4,11 @@
  */
 package com.mycompany.centroeducativo2.controladorDao.entidades.formularios;
 
-import com.mycompany.centroeducativo2.controladorDao.AulaDaoImp;
-import com.mycompany.centroeducativo2.controladorDao.CursoDaoImp;
-import com.mycompany.centroeducativo2.controladorDao.PersonalDaoImp;
+import com.mycompany.centroeducativo2.controladorDao.AlumnoDaoImp;
+import com.mycompany.centroeducativo2.controladorDao.MatriculaDaoImp;
 import com.mycompany.centroeducativo2.controladorDao.UnidadDaoImp;
-import com.mycompany.centroeducativo2.controladorDao.entidades.Aula;
-import com.mycompany.centroeducativo2.controladorDao.entidades.Curso;
-import com.mycompany.centroeducativo2.controladorDao.entidades.Personal;
+import com.mycompany.centroeducativo2.controladorDao.entidades.Alumno;
+import com.mycompany.centroeducativo2.controladorDao.entidades.Matricula;
 import com.mycompany.centroeducativo2.controladorDao.entidades.Unidad;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -25,17 +23,16 @@ import javax.swing.table.TableRowSorter;
  *
  * @author sum27
  */
-public class jpUnidad extends javax.swing.JPanel {
+public class jpMatricula extends javax.swing.JPanel {
 
-    public int idUnidad[];
-    public int idCursoGlobal[];
-    public int idTutorGlobal[];
-    public int idAulaGlobal[];
+    public int idMatricula[];
+    public int idAlumnoGlobal[];
+    public int idUnidadGlobal[];
 
     /**
      * Creates new form curso
      */
-    public jpUnidad() {
+    public jpMatricula() {
         initComponents();
         configTabla();
 
@@ -48,11 +45,8 @@ public class jpUnidad extends javax.swing.JPanel {
     }
 
     private void Ocultar() {
-        txtCodigo.setVisible(true);
-        txtNombre.setVisible(true);
-        txtAula.setVisible(true);
-        txtTutor.setVisible(true);
-        txtCurso.setVisible(true);
+        txtAlumno.setVisible(true);
+        txtUnidad.setVisible(true);
         txtObservaciones.setVisible(true);
         btnEditar.setVisible(true);
 
@@ -61,17 +55,13 @@ public class jpUnidad extends javax.swing.JPanel {
         btnCancelar.setVisible(false);
         btnBorrar.setVisible(false);
         CBOpciones.setVisible(false);
-        CBTutor.setVisible(false);
-        CBCurso.setVisible(false);
-        CBAula.setVisible(false);
+        CBAlumno.setVisible(false);
+        CBUnidad.setVisible(false);
     }
 
     public void Mostrar() {
-        txtCodigo.setVisible(false);
-        txtNombre.setVisible(false);
-        txtAula.setVisible(false);
-        txtTutor.setVisible(false);
-        txtCurso.setVisible(false);
+        txtAlumno.setVisible(false);
+        txtUnidad.setVisible(false);
         txtObservaciones.setVisible(false);
         btnEditar.setVisible(false);
         btnEditar.setVisible(false);
@@ -93,27 +83,22 @@ public class jpUnidad extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         pnlDetalle = new javax.swing.JPanel();
-        jlCodigo = new javax.swing.JLabel();
         btnActualizar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        jLNombre = new javax.swing.JLabel();
         btnBorrar = new javax.swing.JButton();
         btnAnadir = new javax.swing.JButton();
         CBOpciones = new javax.swing.JComboBox<>();
         btnEditar = new javax.swing.JButton();
         jLParentesco = new javax.swing.JLabel();
-        txtCodigo = new javax.swing.JTextField();
-        txtNombre = new javax.swing.JTextField();
         txtObservaciones = new javax.swing.JTextField();
-        jLCurso = new javax.swing.JLabel();
-        txtCurso = new javax.swing.JTextField();
-        jLAula = new javax.swing.JLabel();
-        jLTutor1 = new javax.swing.JLabel();
-        txtAula = new javax.swing.JTextField();
-        txtTutor = new javax.swing.JTextField();
-        CBTutor = new javax.swing.JComboBox<>();
-        CBAula = new javax.swing.JComboBox<>();
-        CBCurso = new javax.swing.JComboBox<>();
+        jLUnidad = new javax.swing.JLabel();
+        txtUnidad = new javax.swing.JTextField();
+        jLAlumno = new javax.swing.JLabel();
+        txtAlumno = new javax.swing.JTextField();
+        CBAlumno = new javax.swing.JComboBox<>();
+        CBUnidad = new javax.swing.JComboBox<>();
+        jLMatricula = new javax.swing.JLabel();
+        txtfMatricula = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -190,9 +175,6 @@ public class jpUnidad extends javax.swing.JPanel {
 
         pnlDetalle.setBackground(new java.awt.Color(255, 255, 255));
 
-        jlCodigo.setFont(new java.awt.Font("Yu Gothic", 1, 15)); // NOI18N
-        jlCodigo.setText("Codigo");
-
         btnActualizar.setBackground(new java.awt.Color(51, 255, 51));
         btnActualizar.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -210,10 +192,6 @@ public class jpUnidad extends javax.swing.JPanel {
                 btnCancelarActionPerformed(evt);
             }
         });
-
-        jLNombre.setBackground(new java.awt.Color(153, 255, 153));
-        jLNombre.setFont(new java.awt.Font("Yu Gothic", 1, 15)); // NOI18N
-        jLNombre.setText("Nombre");
 
         btnBorrar.setBackground(new java.awt.Color(51, 255, 51));
         btnBorrar.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
@@ -252,46 +230,37 @@ public class jpUnidad extends javax.swing.JPanel {
 
         jLParentesco.setBackground(new java.awt.Color(153, 255, 153));
         jLParentesco.setFont(new java.awt.Font("Yu Gothic", 1, 15)); // NOI18N
-        jLParentesco.setText("Observaciones");
-
-        txtCodigo.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
-        txtCodigo.setForeground(new java.awt.Color(153, 153, 153));
-
-        txtNombre.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
-        txtNombre.setForeground(new java.awt.Color(153, 153, 153));
+        jLParentesco.setText("Descripcion");
 
         txtObservaciones.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
         txtObservaciones.setForeground(new java.awt.Color(153, 153, 153));
 
-        jLCurso.setBackground(new java.awt.Color(153, 255, 153));
-        jLCurso.setFont(new java.awt.Font("Yu Gothic", 1, 15)); // NOI18N
-        jLCurso.setText("Curso");
+        jLUnidad.setBackground(new java.awt.Color(153, 255, 153));
+        jLUnidad.setFont(new java.awt.Font("Yu Gothic", 1, 15)); // NOI18N
+        jLUnidad.setText("Unidad");
 
-        txtCurso.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
-        txtCurso.setForeground(new java.awt.Color(153, 153, 153));
+        txtUnidad.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        txtUnidad.setForeground(new java.awt.Color(153, 153, 153));
 
-        jLAula.setBackground(new java.awt.Color(153, 255, 153));
-        jLAula.setFont(new java.awt.Font("Yu Gothic", 1, 15)); // NOI18N
-        jLAula.setText("Aula");
+        jLAlumno.setBackground(new java.awt.Color(153, 255, 153));
+        jLAlumno.setFont(new java.awt.Font("Yu Gothic", 1, 15)); // NOI18N
+        jLAlumno.setText("Alumno");
 
-        jLTutor1.setBackground(new java.awt.Color(153, 255, 153));
-        jLTutor1.setFont(new java.awt.Font("Yu Gothic", 1, 15)); // NOI18N
-        jLTutor1.setText("Tutor");
+        txtAlumno.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        txtAlumno.setForeground(new java.awt.Color(153, 153, 153));
 
-        txtAula.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
-        txtAula.setForeground(new java.awt.Color(153, 153, 153));
+        CBAlumno.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        CBAlumno.setForeground(new java.awt.Color(153, 153, 153));
 
-        txtTutor.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
-        txtTutor.setForeground(new java.awt.Color(153, 153, 153));
+        CBUnidad.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        CBUnidad.setForeground(new java.awt.Color(153, 153, 153));
 
-        CBTutor.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
-        CBTutor.setForeground(new java.awt.Color(153, 153, 153));
+        jLMatricula.setBackground(new java.awt.Color(153, 255, 153));
+        jLMatricula.setFont(new java.awt.Font("Yu Gothic", 1, 15)); // NOI18N
+        jLMatricula.setText("Fecha de matriculación");
 
-        CBAula.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
-        CBAula.setForeground(new java.awt.Color(153, 153, 153));
-
-        CBCurso.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
-        CBCurso.setForeground(new java.awt.Color(153, 153, 153));
+        txtfMatricula.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
+        txtfMatricula.setForeground(new java.awt.Color(153, 153, 153));
 
         javax.swing.GroupLayout pnlDetalleLayout = new javax.swing.GroupLayout(pnlDetalle);
         pnlDetalle.setLayout(pnlDetalleLayout);
@@ -316,29 +285,22 @@ public class jpUnidad extends javax.swing.JPanel {
                             .addGroup(pnlDetalleLayout.createSequentialGroup()
                                 .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jlCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtCodigo)
                                         .addComponent(jLParentesco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(txtObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(pnlDetalleLayout.createSequentialGroup()
-                                        .addComponent(jLCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(CBCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(CBUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(120, 120, 120)
                                 .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtAula, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(pnlDetalleLayout.createSequentialGroup()
-                                        .addComponent(jLAula, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(CBAula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(pnlDetalleLayout.createSequentialGroup()
-                                        .addComponent(jLTutor1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(CBTutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtTutor, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(CBAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtfMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(pnlDetalleLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -349,33 +311,24 @@ public class jpUnidad extends javax.swing.JPanel {
         pnlDetalleLayout.setVerticalGroup(
             pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDetalleLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jlCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLNombre))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(128, 128, 128)
                 .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLParentesco)
-                    .addComponent(CBTutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLTutor1))
+                    .addComponent(CBAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLAlumno))
                 .addGap(18, 18, 18)
                 .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLAula)
-                    .addComponent(CBAula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLCurso)
-                    .addComponent(CBCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLUnidad)
+                    .addComponent(CBUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLMatricula))
                 .addGap(18, 18, 18)
                 .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtfMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addComponent(btnBorrar)
                 .addGap(18, 18, 18)
@@ -395,40 +348,46 @@ public class jpUnidad extends javax.swing.JPanel {
 public boolean cargaTabla() {
         DefaultTableModel modelo = (DefaultTableModel) jtCursoss.getModel();
 
-        UnidadDaoImp UnidadControler = UnidadDaoImp.getInstance();
-        String[] fila = new String[6];
+        MatriculaDaoImp MatriculaControler = MatriculaDaoImp.getInstance();
+        String[] fila = new String[4];
 
         modelo.setNumRows(0);
         try {
-            List<Unidad> lst = UnidadControler.getAll();
+            List<Matricula> lst = MatriculaControler.getAll();
             // Necesito guardar las id
-            int cursos[] = new int[lst.size()];
-            int tutores[] = new int[lst.size()];
-            int aulas[] = new int[lst.size()];
+            int unidades[] = new int[lst.size()];
+            int alumnos[] = new int[lst.size()];
 
             if (lst.size() > 0) {
                 // Para borrar necesito el id
-                idUnidad = new int[lst.size()];
-                AulaDaoImp aul = AulaDaoImp.getInstance();
-                CursoDaoImp cur = CursoDaoImp.getInstance();
-                PersonalDaoImp per = PersonalDaoImp.getInstance();
+                idMatricula = new int[lst.size()];
+                AlumnoDaoImp alum = AlumnoDaoImp.getInstance();
+                UnidadDaoImp uni = UnidadDaoImp.getInstance();
 
                 for (int i = 0; i < lst.size(); i++) {
-                    fila[0] = "" + lst.get(i).getCodigo();
-                    fila[1] = "" + lst.get(i).getNombre();
-                    fila[2] = "" + lst.get(i).getObservaciones();
-                    fila[3] = "" + cur.getById(lst.get(i).getIdcurso()).getNombre();
-                    fila[4] = "" + per.getById(lst.get(i).getIdtutor()).getNombre();
-                    fila[5] = "" + aul.getById(lst.get(i).getIdaula()).getCodigo();
+                    if (alum.getById(lst.get(i).getIdalumno()) != null) {
+                        fila[0] = "" + alum.getById(lst.get(i).getIdalumno()).getDni()
+                                + " - " + alum.getById(lst.get(i).getIdalumno()).getNombre()
+                                + " " + alum.getById(lst.get(i).getIdalumno()).getApellido1();
+                    }else{
+                        fila[0] = "" + null;
+                    }
+                    
+                    if (uni.getById(lst.get(i).getIdunidad()) != null) {
+                        fila[1] = "" + uni.getById(lst.get(i).getIdunidad()).getCodigo();
+                    }else{
+                        fila[1] = "" + null;
+                    }
+                    fila[2] = "" + lst.get(i).getDescripcion();
+                    fila[3] = "" + lst.get(i).getfMatricula();
 
                     modelo.addRow(fila);
 
                     // Le metemos el id
-                    idUnidad[i] = lst.get(i).getId();
+                    idMatricula[i] = lst.get(i).getIdmatricula();
                     // Guardo la variable
-                    cursos[i] = lst.get(i).getIdcurso();
-                    tutores[i] = lst.get(i).getIdtutor();
-                    aulas[i] = lst.get(i).getIdaula();
+                    unidades[i] = lst.get(i).getIdunidad();
+                    alumnos[i] = lst.get(i).getIdalumno();
                 }
                 //selecciono la primera fila
                 jtCursoss.setRowSelectionInterval(0, 0);
@@ -440,36 +399,32 @@ public boolean cargaTabla() {
         return false;
     }
 
-    private Unidad getCampos() {
-        Unidad c = new Unidad();
-        c.setCodigo(txtCodigo.getText());
-        c.setNombre(txtNombre.getText());
-        c.setObservaciones(txtObservaciones.getText());
-        c.setIdaula(idAulaGlobal[CBAula.getSelectedIndex()]);
-        c.setIdcurso(idCursoGlobal[CBCurso.getSelectedIndex()]);
-        c.setIdtutor(idTutorGlobal[CBTutor.getSelectedIndex()]);
+    private Matricula getCampos() {
+        Matricula c = new Matricula();
+        c.setDescripcion(txtObservaciones.getText());
+        c.setfMatricula(txtfMatricula.getText());
+        c.setIdalumno(idAlumnoGlobal[CBAlumno.getSelectedIndex()]);
+        c.setIdunidad(idUnidadGlobal[CBUnidad.getSelectedIndex()]);
         return c;
     }
 
-    private Unidad AyudaActualizar() {
-        Unidad cr = getCampos();
-        cr.setId(idUnidad[Integer.parseInt(jtCursoss.getSelectedRow() + "")]);
+    private Matricula AyudaActualizar() {
+        Matricula cr = getCampos();
+        cr.setIdmatricula(idMatricula[Integer.parseInt(jtCursoss.getSelectedRow() + "")]);
         return cr;
     }
 
     public void setCampos() {
-        txtCodigo.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 0).toString());
-        txtNombre.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 1).toString());
+        txtAlumno.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 0).toString());
+        txtUnidad.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 1).toString());
         txtObservaciones.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 2).toString());
-        txtCurso.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 3).toString());
-        txtTutor.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 4).toString());
-        txtAula.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 5).toString());
+        txtfMatricula.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 3).toString());
 
         btnEditar.setVisible(true);
     }
 
     public void configTabla() {
-        String col[] = {"CODIGO", "NOMBRE", "OBSERVACIONES", "CURSO", "TUTOR", "AULA"};
+        String col[] = {"ALUMNO", "UNIDAD", "DESCRIPCION", "Fecha Matricula"};
 
         DefaultTableModel modelo = new DefaultTableModel(col, 0) {
 
@@ -527,42 +482,44 @@ public boolean cargaTabla() {
 
     private void btnAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirActionPerformed
         // Boton de añadir
-        UnidadDaoImp c = UnidadDaoImp.getInstance();
-        
+        MatriculaDaoImp c = MatriculaDaoImp.getInstance();
+
         try {
             c.add(getCampos());
-            JOptionPane.showMessageDialog(this, "Unidad agregado correctamente");
+            JOptionPane.showMessageDialog(this, "Matricula agregado correctamente");
             cargaTabla();
 
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error");
             System.out.println("Error:" + e.getMessage());
         }
         Ocultar();
     }//GEN-LAST:event_btnAnadirActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        UnidadDaoImp c = UnidadDaoImp.getInstance();
+        MatriculaDaoImp c = MatriculaDaoImp.getInstance();
 
         try {
             c.update(AyudaActualizar());
-            JOptionPane.showMessageDialog(this, "Unidad actualizado");
+            JOptionPane.showMessageDialog(this, "Matricula actualizado");
             cargaTabla();
 
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error");
             System.out.println("Error:" + e.getMessage());
         }
         Ocultar();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        UnidadDaoImp c = UnidadDaoImp.getInstance();
+        MatriculaDaoImp c = MatriculaDaoImp.getInstance();
         try {
-            c.delete(idUnidad[Integer.parseInt((jtCursoss.getSelectedRow() + ""))]);
-            JOptionPane.showMessageDialog(this, "Unidad borrado...");
+            c.delete(idMatricula[Integer.parseInt((jtCursoss.getSelectedRow() + ""))]);
+            JOptionPane.showMessageDialog(this, "Matricula borrado...");
             cargaTabla();
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error...");
+            JOptionPane.showMessageDialog(this, "Error");
             System.out.println("Error:" + e.getMessage());
         }
         Ocultar();
@@ -572,36 +529,27 @@ public boolean cargaTabla() {
         Ocultar();
     }//GEN-LAST:event_btnCancelarActionPerformed
     private void cargarComboBox() {
-        AulaDaoImp aul = AulaDaoImp.getInstance();
-        CursoDaoImp curo = CursoDaoImp.getInstance();
-        PersonalDaoImp pero = PersonalDaoImp.getInstance();
+        AlumnoDaoImp alum = AlumnoDaoImp.getInstance();
+        UnidadDaoImp uni = UnidadDaoImp.getInstance();
         try {
             int cont = 0;
-            List<Curso> cursoLista = curo.getAll();
-            idCursoGlobal = new int [cursoLista.size()];
-            for (Curso cur : cursoLista) {
-                CBCurso.addItem(cur.getCodigo());
-                idCursoGlobal[cont] = cur.getId();
+            List<Alumno> alumnoLista = alum.getAll();
+            idAlumnoGlobal = new int[alumnoLista.size()];
+            for (Alumno alu : alumnoLista) {
+                CBAlumno.addItem(alu.getDni());
+                idAlumnoGlobal[cont] = alu.getId();
                 cont++;
             }
             cont = 0;
-            
-            List<Aula> aulaLista = aul.getAll();
-            idAulaGlobal = new int[cursoLista.size()];
-            for (Aula al : aulaLista) {
-                CBAula.addItem(al.getCodigo());
-                idAulaGlobal[cont] = al.getId();
+
+            List<Unidad> unidadLista = uni.getAll();
+            idUnidadGlobal = new int[unidadLista.size()];
+            for (Unidad al : unidadLista) {
+                CBUnidad.addItem(al.getCodigo());
+                idUnidadGlobal[cont] = al.getId();
                 cont++;
             }
             cont = 0;
-            
-            List<Personal> perLista = pero.getAll();
-            idTutorGlobal = new int[perLista.size()];
-            for (Personal per : perLista) {
-                CBTutor.addItem(per.getNombre() + " " + per.getApellido1());
-                idTutorGlobal[cont] = per.getId();
-                cont++;
-            }
         } catch (Exception e) {
             System.out.println("Error..." + e.getMessage());
         }
@@ -610,13 +558,11 @@ public boolean cargaTabla() {
 
     private void CBOpcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBOpcionesActionPerformed
         cargarComboBox();
-        
-        txtAula.setVisible(false);
-        txtCurso.setVisible(false);
-        txtTutor.setVisible(false);
-        CBAula.setVisible(true);
-        CBTutor.setVisible(true);
-        CBCurso.setVisible(true);
+
+        txtUnidad.setVisible(false);
+        txtAlumno.setVisible(false);
+        CBAlumno.setVisible(true);
+        CBUnidad.setVisible(true);
         switch (CBOpciones.getSelectedIndex()) {
             case 0 -> {
                 btnAnadir.setVisible(true);
@@ -637,32 +583,27 @@ public boolean cargaTabla() {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> CBAula;
-    private javax.swing.JComboBox<String> CBCurso;
+    private javax.swing.JComboBox<String> CBAlumno;
     private javax.swing.JComboBox<String> CBOpciones;
-    private javax.swing.JComboBox<String> CBTutor;
+    private javax.swing.JComboBox<String> CBUnidad;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAnadir;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditar;
-    private javax.swing.JLabel jLAula;
-    private javax.swing.JLabel jLCurso;
-    private javax.swing.JLabel jLNombre;
+    private javax.swing.JLabel jLAlumno;
+    private javax.swing.JLabel jLMatricula;
     private javax.swing.JLabel jLParentesco;
-    private javax.swing.JLabel jLTutor1;
+    private javax.swing.JLabel jLUnidad;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JLabel jlCodigo;
     private javax.swing.JTable jtCursoss;
     private javax.swing.JPanel pnlDetalle;
     private javax.swing.JPanel pnlTabla2;
-    private javax.swing.JTextField txtAula;
+    private javax.swing.JTextField txtAlumno;
     private javax.swing.JTextField txtBuscar;
-    private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtCurso;
-    private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtObservaciones;
-    private javax.swing.JTextField txtTutor;
+    private javax.swing.JTextField txtUnidad;
+    private javax.swing.JTextField txtfMatricula;
     // End of variables declaration//GEN-END:variables
 }

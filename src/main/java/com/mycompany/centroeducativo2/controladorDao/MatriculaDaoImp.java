@@ -9,9 +9,11 @@ package com.mycompany.centroeducativo2.controladorDao;
 import com.mycompany.centroeducativo2.BD.MyDataSource;
 import com.mycompany.centroeducativo2.controladorDao.entidades.Matricula;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +45,7 @@ private static MatriculaDaoImp instance;
         try (Connection cn = MyDataSource.getConnection(); PreparedStatement pstm = cn.prepareStatement(sql);) {
 
             pstm.setInt(1, m.getIdalumno());
-            pstm.setInt(2, m.getIdunidas());
+            pstm.setInt(2, m.getIdunidad());
             pstm.setString(3, m.getDescripcion());
             pstm.setDate(4, m.getfMatricula());
 
@@ -56,7 +58,7 @@ private static MatriculaDaoImp instance;
 
     @Override
     public Matricula getById(int id) throws SQLException {
-        String sql="SELECT * FROM centroeducativo.matricula WHERE id=? and matricula is null";
+        String sql="SELECT * FROM centroeducativo.matricula WHERE idmatricula=? and matricula is null";
         Matricula matr=null;
         try(Connection cn=MyDataSource.getConnection();
             PreparedStatement pstm=cn.prepareStatement(sql);){
@@ -69,7 +71,7 @@ private static MatriculaDaoImp instance;
                 matr.setIdalumno(rs.getInt("idalumno"));
                 matr.setIdunidad(rs.getInt("idunidad"));
                 matr.setDescripcion(rs.getString("descripcion"));
-                matr.setfMatricula(rs.getDate("fMatricula"));
+                matr.setfMatricula(rs.getDate("fMatricula").toString());
             }
             
         }catch(Exception e){
@@ -82,7 +84,7 @@ private static MatriculaDaoImp instance;
     @Override
     public List<Matricula> getAll() throws SQLException {
         Matricula matr=null;
-        String sql="select * from Matricula";
+        String sql="select * from matricula where fBaja is null";
         
         List<Matricula> result=new ArrayList();
 
@@ -94,18 +96,11 @@ private static MatriculaDaoImp instance;
             while (rs.next()){
                 matr=new Matricula();
                 
-                matr.setId(rs.getInt("id"));
-                matr.setDni(rs.getString("dni"));
-                matr.setNombre(rs.getString("nombre"));
-                matr.setApellido1(rs.getString("apellido1"));
-                matr.setApellido2(rs.getString("apellido2"));
-                matr.setTipo(rs.getInt("tipo"));
-                matr.setTelefono(rs.getString("telefono"));
-                matr.setEmail(rs.getString("email"));
-                matr.setDireccion(rs.getString("direccion"));
-                matr.setCp(rs.getString("cp"));
-                matr.setPoblacion(rs.getString("poblacion"));
-                matr.setProvincia(rs.getString("provincia"));
+                matr.setIdmatricula(rs.getInt("idmatricula"));
+                matr.setIdalumno(rs.getInt("idalumno"));
+                matr.setIdunidad(rs.getInt("idunidad"));
+                matr.setDescripcion(rs.getString("descripcion"));
+                matr.setfMatricula(rs.getDate("fMatricula").toString());
                 
                 result.add(matr);
             }
@@ -118,28 +113,21 @@ private static MatriculaDaoImp instance;
     @Override
     public int update(Matricula m) throws SQLException {
         String sql = """
-                   update centroeducativo.Matricula
-                   set dni=?, nombre=?, apellido1=?, apellido2=?,
-                   tipo=?, telefono=?, email=?, direccion=?, cp=?, poblacion=?,
-                   provincia=?
-                   where id = ?;
+                   update centroeducativo.matricula
+                   set idalumno=?, idunidad=?, descripcion=?, fMatricula=?,
+                   fBaja=?
+                   where idmatricula = ?;
                    """;
 
         try (Connection cn = MyDataSource.getConnection();) {
             PreparedStatement pstm = cn.prepareStatement(sql);
             
-            pstm.setString(1, m.getDni());
-            pstm.setString(2, m.getNombre());
-            pstm.setString(3, m.getApellido1());
-            pstm.setString(4, m.getApellido2());
-            pstm.setInt(5, m.getTipo());
-            pstm.setString(6, m.getTelefono());
-            pstm.setString(7, m.getEmail());
-            pstm.setString(8, m.getDireccion());
-            pstm.setString(9, m.getCp());
-            pstm.setString(10, m.getPoblacion());
-            pstm.setString(11, m.getProvincia());
-            pstm.setInt(12, m.getId());
+            pstm.setInt(1, m.getIdalumno());
+            pstm.setInt(2, m.getIdunidad());
+            pstm.setString(3, m.getDescripcion());
+            pstm.setDate(4, m.getfMatricula());
+            pstm.setDate(5, m.getfBaja());
+            pstm.setInt(6, m.getIdmatricula());
 
             return pstm.executeUpdate();
 
@@ -152,12 +140,15 @@ private static MatriculaDaoImp instance;
     @Override
     public void delete(int id) throws SQLException {
         String sql = """
-                   delete from centroeducativo.Matricula where id=?;
+                   update centroeducativo.matricula
+                                      set fBaja=?
+                                      where idmatricula = ?;
                    """;
         try (Connection cn = MyDataSource.getConnection();) {
 
             PreparedStatement pstm = cn.prepareStatement(sql);
-            pstm.setInt(1, id);
+            pstm.setDate(1, Date.valueOf(LocalDate.now()));
+            pstm.setInt(2, id);
 
             pstm.executeUpdate();
         } catch (Exception e) {

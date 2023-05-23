@@ -69,16 +69,16 @@ public class Matricula {
         return fMatricula;
     }
 
-    public void setfMatricula(Date fMatricula) {
-        this.fMatricula = fMatricula;
+    public void setfMatricula(String fMatricula) {
+        this.fMatricula = Date.valueOf(fMatricula);
     }
 
     public Date getfBaja() {
         return fBaja;
     }
 
-    public void setfBaja(Date fBaja) {
-        this.fBaja = fBaja;
+    public void setfBaja(String fBaja) {
+        this.fBaja = Date.valueOf(fBaja);
     }
 
     @Override
@@ -99,14 +99,10 @@ public class Matricula {
             return false;
         }
         final Matricula other = (Matricula) obj;
-        if (this.idmatricula != other.idmatricula) {
-            return false;
-        }
-        if (this.idalumno != other.idalumno) {
-            return false;
-        }
-        return Objects.equals(this.fMatricula, other.fMatricula);
+        return this.idmatricula == other.idmatricula;
     }
+
+    
 
     @Override
     public String toString() {

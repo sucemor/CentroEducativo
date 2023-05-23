@@ -103,6 +103,7 @@ public class Main extends javax.swing.JFrame {
         optmAutorizado = new javax.swing.JMenuItem();
         optmAutorizaciones = new javax.swing.JMenuItem();
         optmUnidades = new javax.swing.JMenuItem();
+        optmMatricula = new javax.swing.JMenuItem();
         optmPersonal = new javax.swing.JMenuItem();
         jmnCursoAcademico = new javax.swing.JMenu();
         helpMenu = new javax.swing.JMenu();
@@ -120,11 +121,11 @@ public class Main extends javax.swing.JFrame {
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 559, Short.MAX_VALUE)
+            .addGap(0, 1151, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 269, Short.MAX_VALUE)
+            .addGap(0, 436, Short.MAX_VALUE)
         );
 
         getContentPane().add(content, java.awt.BorderLayout.CENTER);
@@ -232,6 +233,16 @@ public class Main extends javax.swing.JFrame {
         });
         editMenu.add(optmUnidades);
 
+        optmMatricula.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        optmMatricula.setText("Matricula");
+        optmMatricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optmMatriculaActionPerformed(evt);
+            }
+        });
+        editMenu.add(optmMatricula);
+
+        optmPersonal.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         optmPersonal.setText("Personal");
         optmPersonal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -385,6 +396,17 @@ public class Main extends javax.swing.JFrame {
         content.repaint();
     }//GEN-LAST:event_optmPersonalActionPerformed
 
+    private void optmMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmMatriculaActionPerformed
+        jpMatricula pnlMatricula = new jpMatricula();
+        pnlMatricula.setSize(this.getSize());
+        pnlMatricula.setLocation(0, 0);
+        
+        content.removeAll();
+        content.add(pnlMatricula,BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+    }//GEN-LAST:event_optmMatriculaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -437,6 +459,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem optmAutorizado;
     private javax.swing.JMenuItem optmCurso;
     private javax.swing.JMenuItem optmCursoAcademico;
+    private javax.swing.JMenuItem optmMatricula;
     private javax.swing.JMenuItem optmPersonal;
     private javax.swing.JMenuItem optmUnidades;
     private javax.swing.JMenuItem saveAsMenuItem;

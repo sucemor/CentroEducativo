@@ -90,7 +90,7 @@ public class jpAula extends javax.swing.JPanel {
         CBOpciones = new javax.swing.JComboBox<>();
         btnEditar = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(0, 255, 0));
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlTabla2.setBackground(new java.awt.Color(255, 255, 255));

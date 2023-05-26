@@ -42,6 +42,13 @@ public class curso extends javax.swing.JPanel {
         Ocultar();
         idCA = idCursoAcademico;
         CargarCurso();
+        
+        CursoAcademicoDaoImp cursaca = CursoAcademicoDaoImp.getInstance();
+        try{
+        txtCursoTITULO.setText(cursaca.getById(idCursoAcademico).getDescripcion());
+        }catch(Exception e){
+            System.out.println("Error...");
+        }
     }
 
     /**
@@ -104,6 +111,7 @@ public class curso extends javax.swing.JPanel {
         jtCursoss = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
+        txtCursoTITULO = new javax.swing.JLabel();
         pnlDetalle = new javax.swing.JPanel();
         jlCodigo = new javax.swing.JLabel();
         jlNombre = new javax.swing.JLabel();
@@ -170,6 +178,9 @@ public class curso extends javax.swing.JPanel {
             }
         });
 
+        txtCursoTITULO.setFont(new java.awt.Font("Yu Gothic", 3, 24)); // NOI18N
+        txtCursoTITULO.setText("Curso");
+
         javax.swing.GroupLayout pnlTabla2Layout = new javax.swing.GroupLayout(pnlTabla2);
         pnlTabla2.setLayout(pnlTabla2Layout);
         pnlTabla2Layout.setHorizontalGroup(
@@ -178,24 +189,30 @@ public class curso extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addGroup(pnlTabla2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlTabla2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(62, Short.MAX_VALUE))
+                    .addGroup(pnlTabla2Layout.createSequentialGroup()
                         .addGroup(pnlTabla2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(pnlTabla2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(62, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTabla2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(txtCursoTITULO, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         pnlTabla2Layout.setVerticalGroup(
             pnlTabla2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTabla2Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(22, 22, 22)
+                .addComponent(txtCursoTITULO)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         add(pnlTabla2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, -1));
@@ -624,6 +641,7 @@ public boolean cargaTabla(int idCursoAcademico) {
     private javax.swing.JPanel pnlDetalle;
     private javax.swing.JPanel pnlTabla2;
     private javax.swing.JTextField txtBuscar;
+    private javax.swing.JLabel txtCursoTITULO;
     private javax.swing.JTextField txtFCodigo;
     private javax.swing.JTextField txtFDescripcion;
     private javax.swing.JTextField txtFNombre;

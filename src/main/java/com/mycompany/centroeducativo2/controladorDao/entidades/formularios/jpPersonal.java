@@ -6,6 +6,7 @@ package com.mycompany.centroeducativo2.controladorDao.entidades.formularios;
 
 import com.mycompany.centroeducativo2.controladorDao.PersonalDaoImp;
 import com.mycompany.centroeducativo2.controladorDao.entidades.Personal;
+import java.awt.Panel;
 import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -330,7 +331,7 @@ public class jpPersonal extends javax.swing.JPanel {
             .addGroup(pnlDetalleLayout.createSequentialGroup()
                 .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlDetalleLayout.createSequentialGroup()
-                        .addGap(230, 230, 230)
+                        .addGap(262, 262, 262)
                         .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLApellido2)
                             .addComponent(jLTelefono))

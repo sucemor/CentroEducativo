@@ -35,12 +35,20 @@ public class Main extends javax.swing.JFrame {
         statusLabel = new JLabel("");
         status.add( statusLabel );
         this.getContentPane().add(status, BorderLayout.SOUTH);
-        
         generaMenuCursosAcademicos();
         //System.out.println("Generado menu");
-        
+        pantallaPrincipal();
     }
-    
+    public void pantallaPrincipal(){
+        Pantalla pnlPantalla = new Pantalla();
+        pnlPantalla.setSize(this.getSize());
+        pnlPantalla.setLocation(0, 0);
+        
+        content.removeAll();
+        content.add(pnlPantalla,BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+    }
     private int generaMenuCursosAcademicos(){
         ButtonGroup bgrCursosAcademicos=new ButtonGroup();
         JRadioButtonMenuItem jrbCursoAcademico;
@@ -69,7 +77,7 @@ public class Main extends javax.swing.JFrame {
                             idCursoAcademico=Integer.parseInt(jrbSelected.getName());
                             System.out.println(""+idCursoAcademico);
                             statusLabel.setText(jrbSelected.getText());
-                            
+                            pantallaPrincipal();
                         }
                     });
                 }
@@ -101,10 +109,9 @@ public class Main extends javax.swing.JFrame {
         optmAlumno = new javax.swing.JMenuItem();
         optmAula = new javax.swing.JMenuItem();
         optmAutorizado = new javax.swing.JMenuItem();
-        optmAutorizaciones = new javax.swing.JMenuItem();
         optmUnidades = new javax.swing.JMenuItem();
-        optmMatricula = new javax.swing.JMenuItem();
         optmPersonal = new javax.swing.JMenuItem();
+        optmMatricula = new javax.swing.JMenuItem();
         jmnCursoAcademico = new javax.swing.JMenu();
         helpMenu = new javax.swing.JMenu();
         contentMenuItem = new javax.swing.JMenuItem();
@@ -116,6 +123,7 @@ public class Main extends javax.swing.JFrame {
         setFocusCycleRoot(false);
 
         content.setBackground(new java.awt.Color(255, 255, 255));
+        content.setPreferredSize(new java.awt.Dimension(1920, 1080));
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
@@ -215,15 +223,6 @@ public class Main extends javax.swing.JFrame {
         });
         editMenu.add(optmAutorizado);
 
-        optmAutorizaciones.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        optmAutorizaciones.setText("Autorizados");
-        optmAutorizaciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                optmAutorizacionesActionPerformed(evt);
-            }
-        });
-        editMenu.add(optmAutorizaciones);
-
         optmUnidades.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         optmUnidades.setText("Unidades");
         optmUnidades.addActionListener(new java.awt.event.ActionListener() {
@@ -233,15 +232,6 @@ public class Main extends javax.swing.JFrame {
         });
         editMenu.add(optmUnidades);
 
-        optmMatricula.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        optmMatricula.setText("Matricula");
-        optmMatricula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                optmMatriculaActionPerformed(evt);
-            }
-        });
-        editMenu.add(optmMatricula);
-
         optmPersonal.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         optmPersonal.setText("Personal");
         optmPersonal.addActionListener(new java.awt.event.ActionListener() {
@@ -250,6 +240,15 @@ public class Main extends javax.swing.JFrame {
             }
         });
         editMenu.add(optmPersonal);
+
+        optmMatricula.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        optmMatricula.setText("Matricula");
+        optmMatricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optmMatriculaActionPerformed(evt);
+            }
+        });
+        editMenu.add(optmMatricula);
 
         menuBar.add(editMenu);
 
@@ -374,17 +373,6 @@ public class Main extends javax.swing.JFrame {
         content.repaint();
     }//GEN-LAST:event_optmAutorizadoActionPerformed
 
-    private void optmAutorizacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmAutorizacionesActionPerformed
-        jpAutorizaciones pnlAutorizaciones = new jpAutorizaciones();
-        pnlAutorizaciones.setSize(this.getSize());
-        pnlAutorizaciones.setLocation(0, 0);
-        
-        content.removeAll();
-        content.add(pnlAutorizaciones,BorderLayout.CENTER);
-        content.revalidate();
-        content.repaint();
-    }//GEN-LAST:event_optmAutorizacionesActionPerformed
-
     private void optmPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmPersonalActionPerformed
         jpPersonal pnlPersonal = new jpPersonal();
         pnlPersonal.setSize(this.getSize());
@@ -455,7 +443,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem optmAcerca;
     private javax.swing.JMenuItem optmAlumno;
     private javax.swing.JMenuItem optmAula;
-    private javax.swing.JMenuItem optmAutorizaciones;
     private javax.swing.JMenuItem optmAutorizado;
     private javax.swing.JMenuItem optmCurso;
     private javax.swing.JMenuItem optmCursoAcademico;

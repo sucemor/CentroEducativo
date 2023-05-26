@@ -251,6 +251,11 @@ public class jpMatricula extends javax.swing.JPanel {
 
         CBAlumno.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
         CBAlumno.setForeground(new java.awt.Color(153, 153, 153));
+        CBAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBAlumnoActionPerformed(evt);
+            }
+        });
 
         CBUnidad.setFont(new java.awt.Font("Yu Gothic", 0, 13)); // NOI18N
         CBUnidad.setForeground(new java.awt.Color(153, 153, 153));
@@ -267,46 +272,44 @@ public class jpMatricula extends javax.swing.JPanel {
         pnlDetalleLayout.setHorizontalGroup(
             pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDetalleLayout.createSequentialGroup()
-                .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlDetalleLayout.createSequentialGroup()
-                        .addGap(0, 13, Short.MAX_VALUE)
-                        .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(CBOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64)
+                        .addComponent(btnEditar))
+                    .addGroup(pnlDetalleLayout.createSequentialGroup()
+                        .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLParentesco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnlDetalleLayout.createSequentialGroup()
-                                .addComponent(CBOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(pnlDetalleLayout.createSequentialGroup()
-                                        .addGap(316, 316, 316)
-                                        .addComponent(btnAnadir))
-                                    .addGroup(pnlDetalleLayout.createSequentialGroup()
-                                        .addGap(64, 64, 64)
-                                        .addComponent(btnEditar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnActualizar))))
+                                .addComponent(jLUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(CBUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlDetalleLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
                                 .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLParentesco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(pnlDetalleLayout.createSequentialGroup()
-                                        .addComponent(jLUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(CBUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(120, 120, 120)
+                                    .addComponent(txtfMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(pnlDetalleLayout.createSequentialGroup()
+                                .addGap(17, 17, 17)
                                 .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(pnlDetalleLayout.createSequentialGroup()
                                         .addComponent(jLAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(CBAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtfMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(pnlDetalleLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBorrar))))
-                .addContainerGap(129, Short.MAX_VALUE))
+                                    .addGroup(pnlDetalleLayout.createSequentialGroup()
+                                        .addGap(145, 145, 145)
+                                        .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btnAnadir)
+                                            .addComponent(btnActualizar)
+                                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btnBorrar))))))))
+                .addGap(237, 237, 237))
         );
         pnlDetalleLayout.setVerticalGroup(
             pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,13 +332,17 @@ public class jpMatricula extends javax.swing.JPanel {
                 .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtfMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
-                .addComponent(btnBorrar)
-                .addGap(18, 18, 18)
-                .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnActualizar)
-                    .addComponent(CBOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditar))
+                .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDetalleLayout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addGroup(pnlDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CBOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEditar)))
+                    .addGroup(pnlDetalleLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(btnBorrar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnActualizar)))
                 .addGap(18, 18, 18)
                 .addComponent(btnAnadir)
                 .addGap(18, 18, 18)
@@ -366,17 +373,17 @@ public boolean cargaTabla() {
 
                 for (int i = 0; i < lst.size(); i++) {
                     if (alum.getById(lst.get(i).getIdalumno()) != null) {
-                        fila[0] = "" + alum.getById(lst.get(i).getIdalumno()).getDni()
-                                + " - " + alum.getById(lst.get(i).getIdalumno()).getNombre()
+                        fila[0] =  alum.getById(lst.get(i).getIdalumno()).getDni()
+                                + " - " +alum.getById(lst.get(i).getIdalumno()).getNombre()
                                 + " " + alum.getById(lst.get(i).getIdalumno()).getApellido1();
                     }else{
-                        fila[0] = "" + null;
+                        fila[0] = "No asignado";
                     }
                     
                     if (uni.getById(lst.get(i).getIdunidad()) != null) {
                         fila[1] = "" + uni.getById(lst.get(i).getIdunidad()).getCodigo();
                     }else{
-                        fila[1] = "" + null;
+                        fila[1] = "No asignado";
                     }
                     fila[2] = "" + lst.get(i).getDescripcion();
                     fila[3] = "" + lst.get(i).getfMatricula();
@@ -536,7 +543,7 @@ public boolean cargaTabla() {
             List<Alumno> alumnoLista = alum.getAll();
             idAlumnoGlobal = new int[alumnoLista.size()];
             for (Alumno alu : alumnoLista) {
-                CBAlumno.addItem(alu.getDni());
+                CBAlumno.addItem(alu.getDni() +" "+  alu.getNombre() +" "+ alu.getApellido1());
                 idAlumnoGlobal[cont] = alu.getId();
                 cont++;
             }
@@ -580,6 +587,10 @@ public boolean cargaTabla() {
         }
         CBOpciones.setVisible(false);
     }//GEN-LAST:event_CBOpcionesActionPerformed
+
+    private void CBAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBAlumnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBAlumnoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

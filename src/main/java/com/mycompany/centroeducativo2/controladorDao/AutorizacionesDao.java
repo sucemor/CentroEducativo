@@ -13,11 +13,12 @@ import java.util.List;
  * @author sum27
  */
 public interface AutorizacionesDao {
-    int add(Autorizaciones c) throws SQLException;
+    int add(int idalumno, int idautorizacion) throws SQLException;
     
     Autorizaciones getById(int id) throws SQLException;
         
     List<Autorizaciones> getAll()  throws SQLException;
     
-    void delete(int idalumno,int idautorizacion)  throws SQLException;
+    void deleteAutorizado(int idautorizacion)  throws SQLException;
+    void deleteAlumno(int idalumno)  throws SQLException;
 }

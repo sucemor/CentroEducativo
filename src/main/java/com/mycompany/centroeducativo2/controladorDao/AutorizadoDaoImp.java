@@ -39,7 +39,7 @@ public class AutorizadoDaoImp implements AutorizadoDao {
                   values (?,?,?,?,?)
                   """;
         int result = 0;
-
+        
         try (Connection cn = MyDataSource.getConnection(); PreparedStatement pstm = cn.prepareStatement(sql);) {
 
             pstm.setString(1, a.getDni());

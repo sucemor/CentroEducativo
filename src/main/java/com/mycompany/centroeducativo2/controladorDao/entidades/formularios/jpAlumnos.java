@@ -5,6 +5,7 @@
 package com.mycompany.centroeducativo2.controladorDao.entidades.formularios;
 
 import com.mycompany.centroeducativo2.controladorDao.AlumnoDaoImp;
+import com.mycompany.centroeducativo2.controladorDao.AutorizacionesDaoImp;
 import com.mycompany.centroeducativo2.controladorDao.entidades.Alumno;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -574,6 +575,8 @@ public boolean cargaTabla() {
             c.delete(idAlumno[Integer.parseInt((jtCursoss.getSelectedRow() + ""))]);
             JOptionPane.showMessageDialog(this, "Alumno borrado...");
             cargaTabla();
+            AutorizacionesDaoImp autorizarEnlace = AutorizacionesDaoImp.getInstance();
+            autorizarEnlace.deleteAutorizado(idAlumno[Integer.parseInt((jtCursoss.getSelectedRow() + ""))]);
 
         } catch (Exception e) {
             System.out.println("Error:" + e.getMessage());

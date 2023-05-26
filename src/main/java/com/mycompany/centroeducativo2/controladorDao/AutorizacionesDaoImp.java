@@ -34,17 +34,17 @@ public class AutorizacionesDaoImp implements AutorizacionesDao {
 
 
     @Override
-    public int add(Autorizaciones c) throws SQLException {
+    public int add(int idalumno, int idautorizado) throws SQLException {
     String sql = """
                   insert into autorizaciones(idalumno,idautorizado)
-                  values (?,?,?)
+                  values (?,?)
                   """;
         int result = 0;
 
         try (Connection cn = MyDataSource.getConnection(); PreparedStatement pstm = cn.prepareStatement(sql);) {
 
-            pstm.setInt(1, c.getIdalumno());
-            pstm.setInt(2, c.getIdautorizado());
+            pstm.setInt(1, idalumno);
+            pstm.setInt(2, idautorizado);
 
             result = pstm.executeUpdate();
 
@@ -102,16 +102,30 @@ public class AutorizacionesDaoImp implements AutorizacionesDao {
     }
 
     @Override
-    public void delete(int idalumno, int idautorizado) throws SQLException {
+    public void deleteAutorizado(int idautorizado) throws SQLException {
      String sql = """
-                   delete from centroeducativo.autorizaciones where idalumno=? and
-                     idautorizado=?;
+                   delete from centroeducativo.autorizaciones where idautorizado=?;
+                   """;
+        try (Connection cn = MyDataSource.getConnection();) {
+
+            PreparedStatement pstm = cn.prepareStatement(sql);
+            pstm.setInt(1, idautorizado);
+
+            pstm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e.getMessage());
+        }    
+    }
+    
+    @Override
+    public void deleteAlumno(int idalumno) throws SQLException {
+     String sql = """
+                   delete from centroeducativo.autorizaciones where idalumno=?;
                    """;
         try (Connection cn = MyDataSource.getConnection();) {
 
             PreparedStatement pstm = cn.prepareStatement(sql);
             pstm.setInt(1, idalumno);
-            pstm.setInt(2, idautorizado);
 
             pstm.executeUpdate();
         } catch (Exception e) {

@@ -4,7 +4,10 @@
  */
 package com.mycompany.centroeducativo2.controladorDao.entidades.formularios;
 
+import com.mycompany.centroeducativo2.controladorDao.AlumnoDaoImp;
+import com.mycompany.centroeducativo2.controladorDao.AutorizacionesDaoImp;
 import com.mycompany.centroeducativo2.controladorDao.AutorizadoDaoImp;
+import com.mycompany.centroeducativo2.controladorDao.entidades.Alumno;
 import com.mycompany.centroeducativo2.controladorDao.entidades.Autorizado;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -29,11 +32,11 @@ public class jpAutorizado extends javax.swing.JPanel {
     public jpAutorizado() {
         initComponents();
         configTabla();
-        
+
         // Si la tabla esta vacia que pueda cargar
-        
-        if(cargaTabla() == true)
+        if (cargaTabla() == true) {
             setCampos();
+        }
 
         Ocultar();
     }
@@ -350,7 +353,7 @@ public boolean cargaTabla() {
         CBParentesco.addItem("TUTOR1");
         CBParentesco.addItem("TUTOR2");
         CBParentesco.addItem("OTROS");
-    
+
         DefaultTableModel modelo = (DefaultTableModel) jtCursoss.getModel();
 
         AutorizadoDaoImp AutorizadoControler = AutorizadoDaoImp.getInstance();
@@ -413,7 +416,7 @@ public boolean cargaTabla() {
         txtApellido2.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 3).toString());
         LbTXTParentesco.setText(jtCursoss.getValueAt(jtCursoss.getSelectedRow(), 4).toString());
     }
-    
+
     public void configTabla() {
         String col[] = {"DNI", "NOMBRE", "APELLIDO1", "APELLIDO2", "PARENTESCO"};
 
@@ -437,6 +440,22 @@ public boolean cargaTabla() {
         }
     });
          */
+    }
+
+    private void guardarAutorizado(int idauto, String dni) {
+        AutorizacionesDaoImp autorizarEnlace = AutorizacionesDaoImp.getInstance();
+        AlumnoDaoImp alumnoControlador = AlumnoDaoImp.getInstance();
+        try {
+            List<Alumno> alumnos = alumnoControlador.getAll();
+            for (Alumno alum : alumnos) {
+                if (dni.equals(alum.getDni())) {
+                    autorizarEnlace.add(alum.getId(), idauto);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error... en  autorizaciones");
+        }
+
     }
     private void jtCursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtCursosMouseClicked
         setCampos();
@@ -474,12 +493,14 @@ public boolean cargaTabla() {
     private void btnAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirActionPerformed
         // Boton de añadir
         AutorizadoDaoImp c = AutorizadoDaoImp.getInstance();
-
+        Autorizado aut = new Autorizado();
+        aut = getCampos();
         try {
-            c.add(getCampos());
+            c.add(aut);
             JOptionPane.showMessageDialog(this, "Autorizado agregado correctamente");
             cargaTabla();
-
+            List <Autorizado> lista = c.getAll();
+            guardarAutorizado(lista.get(lista.size()-1).getId(), aut.getDni());
         } catch (Exception e) {
             System.out.println("Error:" + e.getMessage());
         }
@@ -488,12 +509,12 @@ public boolean cargaTabla() {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         AutorizadoDaoImp c = AutorizadoDaoImp.getInstance();
-        
+
         try {
             c.update(AyudaActualizar());
             JOptionPane.showMessageDialog(this, "Autorizado actualizado");
             cargaTabla();
-            
+
         } catch (Exception e) {
             System.out.println("Error:" + e.getMessage());
         }
@@ -506,7 +527,9 @@ public boolean cargaTabla() {
             c.delete(idAutorizado[Integer.parseInt((jtCursoss.getSelectedRow() + ""))]);
             JOptionPane.showMessageDialog(this, "Autorizado borrado...");
             cargaTabla();
-
+            
+            AutorizacionesDaoImp autorizarEnlace = AutorizacionesDaoImp.getInstance();
+            autorizarEnlace.deleteAutorizado(idAutorizado[Integer.parseInt((jtCursoss.getSelectedRow() + ""))]);
         } catch (Exception e) {
             System.out.println("Error:" + e.getMessage());
         }
